@@ -1,0 +1,78 @@
+C:\Users\Brayan\Desktop\C3D\C3D\Fakes\FastColoredTextBox.fakes : warning : Cannot generate stub for FastColoredTextBoxNS.CompareResult: type is a value type.
+C:\Users\Brayan\Desktop\C3D\C3D\Fakes\FastColoredTextBox.fakes : warning : Cannot generate stub for FastColoredTextBoxNS.AutocompleteListView: type has no family visible contructors.
+C:\Users\Brayan\Desktop\C3D\C3D\Fakes\FastColoredTextBox.fakes : warning : Cannot generate stub for FastColoredTextBoxNS.Char: type is a value type.
+C:\Users\Brayan\Desktop\C3D\C3D\Fakes\FastColoredTextBox.fakes : warning : Cannot generate stub for FastColoredTextBoxNS.EncodingDetector: type is sealed.
+C:\Users\Brayan\Desktop\C3D\C3D\Fakes\FastColoredTextBox.fakes : warning : Cannot generate stub for FastColoredTextBoxNS.HotkeyWrapper: type is not visible to exported or assembly(FastColoredTextBox.2.16.23.0.Fakes).
+C:\Users\Brayan\Desktop\C3D\C3D\Fakes\FastColoredTextBox.fakes : warning : Cannot generate stub for FastColoredTextBoxNS.MacrosManager: type has no family visible contructors.
+C:\Users\Brayan\Desktop\C3D\C3D\Fakes\FastColoredTextBox.fakes : warning : Cannot generate stub for FastColoredTextBoxNS.PlatformType: type is sealed.
+C:\Users\Brayan\Desktop\C3D\C3D\Fakes\FastColoredTextBox.fakes : warning : Cannot generate stub for FastColoredTextBoxNS.Platform: type is a value type.
+C:\Users\Brayan\Desktop\C3D\C3D\Fakes\FastColoredTextBox.fakes : warning : Cannot generate stub for FastColoredTextBoxNS.FCTBAction: type is a value type.
+C:\Users\Brayan\Desktop\C3D\C3D\Fakes\FastColoredTextBox.fakes : warning : Cannot generate stub for FastColoredTextBoxNS.HotkeysEditor: type is not visible to exported or assembly(FastColoredTextBox.2.16.23.0.Fakes).
+C:\Users\Brayan\Desktop\C3D\C3D\Fakes\FastColoredTextBox.fakes : warning : Cannot generate stub for FastColoredTextBoxNS.Language: type is a value type.
+C:\Users\Brayan\Desktop\C3D\C3D\Fakes\FastColoredTextBox.fakes : warning : Cannot generate stub for FastColoredTextBoxNS.WordWrapMode: type is a value type.
+C:\Users\Brayan\Desktop\C3D\C3D\Fakes\FastColoredTextBox.fakes : warning : Cannot generate stub for FastColoredTextBoxNS.HighlightingRangeType: type is a value type.
+C:\Users\Brayan\Desktop\C3D\C3D\Fakes\FastColoredTextBox.fakes : warning : Cannot generate stub for FastColoredTextBoxNS.FindEndOfFoldingBlockStrategy: type is a value type.
+C:\Users\Brayan\Desktop\C3D\C3D\Fakes\FastColoredTextBox.fakes : warning : Cannot generate stub for FastColoredTextBoxNS.BracketsHighlightStrategy: type is a value type.
+C:\Users\Brayan\Desktop\C3D\C3D\Fakes\FastColoredTextBox.fakes : warning : Cannot generate stub for FastColoredTextBoxNS.TextAreaBorderType: type is a value type.
+C:\Users\Brayan\Desktop\C3D\C3D\Fakes\FastColoredTextBox.fakes : warning : Cannot generate stub for FastColoredTextBoxNS.ScrollDirection: type is a value type.
+C:\Users\Brayan\Desktop\C3D\C3D\Fakes\FastColoredTextBox.fakes : warning : Cannot generate stub for FastColoredTextBoxNS.StyleIndex: type is a value type.
+C:\Users\Brayan\Desktop\C3D\C3D\Fakes\FastColoredTextBox.fakes : warning : Cannot generate stub for FastColoredTextBoxNS.RangeInfo: type is not visible to exported or assembly(FastColoredTextBox.2.16.23.0.Fakes).
+C:\Users\Brayan\Desktop\C3D\C3D\Fakes\FastColoredTextBox.fakes : warning : Cannot generate stub for FastColoredTextBoxNS.Line: type has no family visible contructors.
+C:\Users\Brayan\Desktop\C3D\C3D\Fakes\FastColoredTextBox.fakes : warning : Cannot generate stub for FastColoredTextBoxNS.LineInfo: type is a value type.
+C:\Users\Brayan\Desktop\C3D\C3D\Fakes\FastColoredTextBox.fakes : warning : Cannot generate stub for FastColoredTextBoxNS.VisibleState: type is a value type.
+C:\Users\Brayan\Desktop\C3D\C3D\Fakes\FastColoredTextBox.fakes : warning : Cannot generate stub for FastColoredTextBoxNS.IndentMarker: type is a value type.
+C:\Users\Brayan\Desktop\C3D\C3D\Fakes\FastColoredTextBox.fakes : warning : Cannot generate stub for FastColoredTextBoxNS.Place: type is a value type.
+C:\Users\Brayan\Desktop\C3D\C3D\Fakes\FastColoredTextBox.fakes : warning : Cannot generate stub for FastColoredTextBoxNS.RangeRect: type is a value type.
+C:\Users\Brayan\Desktop\C3D\C3D\Fakes\FastColoredTextBox.fakes : warning : Cannot generate stub for FastColoredTextBoxNS.FCTBDescriptionProvider: type is not visible to exported or assembly(FastColoredTextBox.2.16.23.0.Fakes).
+C:\Users\Brayan\Desktop\C3D\C3D\Fakes\FastColoredTextBox.fakes : warning : Cannot generate stub for FastColoredTextBoxNS.FCTBTypeDescriptor: type is not visible to exported or assembly(FastColoredTextBox.2.16.23.0.Fakes).
+C:\Users\Brayan\Desktop\C3D\C3D\Fakes\FastColoredTextBox.fakes : warning : Cannot generate stub for FastColoredTextBoxNS.FooTextChangedDescriptor: type is not visible to exported or assembly(FastColoredTextBox.2.16.23.0.Fakes).
+C:\Users\Brayan\Desktop\C3D\C3D\Fakes\FastColoredTextBox.fakes : warning : Cannot generate stub for FastColoredTextBoxNS.CharReader: type is not visible to exported or assembly(FastColoredTextBox.2.16.23.0.Fakes).
+C:\Users\Brayan\Desktop\C3D\C3D\Fakes\FastColoredTextBox.fakes : warning : Cannot generate stub for <PrivateImplementationDetails>: type is sealed.
+C:\Users\Brayan\Desktop\C3D\C3D\Fakes\FastColoredTextBox.fakes : warning : Cannot generate shim for FastColoredTextBoxNS.CompareResult: type is an enum.
+C:\Users\Brayan\Desktop\C3D\C3D\Fakes\FastColoredTextBox.fakes : warning : Cannot generate shim for FastColoredTextBoxNS.Bookmarks+<GetEnumerator>d__7: type is not supported because of internal limitations.
+C:\Users\Brayan\Desktop\C3D\C3D\Fakes\FastColoredTextBox.fakes : warning : Cannot generate shim for FastColoredTextBoxNS.Hints+<GetEnumerator>d__8: type is not supported because of internal limitations.
+C:\Users\Brayan\Desktop\C3D\C3D\Fakes\FastColoredTextBox.fakes : warning : Cannot generate shim for FastColoredTextBoxNS.HotkeyWrapper: type is not visible to exported or assembly(FastColoredTextBox.2.16.23.0.Fakes).
+C:\Users\Brayan\Desktop\C3D\C3D\Fakes\FastColoredTextBox.fakes : warning : Cannot generate shim for FastColoredTextBoxNS.LinesAccessor+<GetEnumerator>d__17: type is not supported because of internal limitations.
+C:\Users\Brayan\Desktop\C3D\C3D\Fakes\FastColoredTextBox.fakes : warning : Cannot generate shim for FastColoredTextBoxNS.PlatformType+SYSTEM_INFO: type is not visible to exported or assembly(FastColoredTextBox.2.16.23.0.Fakes).
+C:\Users\Brayan\Desktop\C3D\C3D\Fakes\FastColoredTextBox.fakes : warning : Cannot generate shim for FastColoredTextBoxNS.Platform: type is an enum.
+C:\Users\Brayan\Desktop\C3D\C3D\Fakes\FastColoredTextBox.fakes : warning : Cannot generate shim for FastColoredTextBoxNS.FCTBAction: type is an enum.
+C:\Users\Brayan\Desktop\C3D\C3D\Fakes\FastColoredTextBox.fakes : warning : Cannot generate shim for FastColoredTextBoxNS.HotkeysEditor: type is not visible to exported or assembly(FastColoredTextBox.2.16.23.0.Fakes).
+C:\Users\Brayan\Desktop\C3D\C3D\Fakes\FastColoredTextBox.fakes : warning : Cannot generate shim for FastColoredTextBoxNS.SyntaxHighlighter+XmlFoldingTag: type is not visible to exported or assembly(FastColoredTextBox.2.16.23.0.Fakes).
+C:\Users\Brayan\Desktop\C3D\C3D\Fakes\FastColoredTextBox.fakes : warning : Cannot generate shim for FastColoredTextBoxNS.Language: type is an enum.
+C:\Users\Brayan\Desktop\C3D\C3D\Fakes\FastColoredTextBox.fakes : warning : Cannot generate shim for FastColoredTextBoxNS.FastColoredTextBox+<>c: type is not supported because of internal limitations.
+C:\Users\Brayan\Desktop\C3D\C3D\Fakes\FastColoredTextBox.fakes : warning : Cannot generate shim for FastColoredTextBoxNS.FastColoredTextBox+<>c__DisplayClass568_0: type is not supported because of internal limitations.
+C:\Users\Brayan\Desktop\C3D\C3D\Fakes\FastColoredTextBox.fakes : warning : Cannot generate shim for FastColoredTextBoxNS.FastColoredTextBox+<>c__DisplayClass578_0: type is not supported because of internal limitations.
+C:\Users\Brayan\Desktop\C3D\C3D\Fakes\FastColoredTextBox.fakes : warning : Cannot generate shim for FastColoredTextBoxNS.FastColoredTextBox+<>c__DisplayClass584_0: type is not supported because of internal limitations.
+C:\Users\Brayan\Desktop\C3D\C3D\Fakes\FastColoredTextBox.fakes : warning : Cannot generate shim for FastColoredTextBoxNS.FastColoredTextBox+<>c__DisplayClass585_0: type is not supported because of internal limitations.
+C:\Users\Brayan\Desktop\C3D\C3D\Fakes\FastColoredTextBox.fakes : warning : Cannot generate shim for FastColoredTextBoxNS.FastColoredTextBox+<>c__DisplayClass696_0: type is not supported because of internal limitations.
+C:\Users\Brayan\Desktop\C3D\C3D\Fakes\FastColoredTextBox.fakes : warning : Cannot generate shim for FastColoredTextBoxNS.FastColoredTextBox+<GetRanges>d__747: type is not supported because of internal limitations.
+C:\Users\Brayan\Desktop\C3D\C3D\Fakes\FastColoredTextBox.fakes : warning : Cannot generate shim for FastColoredTextBoxNS.FastColoredTextBox+<GetRanges>d__748: type is not supported because of internal limitations.
+C:\Users\Brayan\Desktop\C3D\C3D\Fakes\FastColoredTextBox.fakes : warning : Cannot generate shim for FastColoredTextBoxNS.FastColoredTextBox+LineYComparer: type is not visible to exported or assembly(FastColoredTextBox.2.16.23.0.Fakes).
+C:\Users\Brayan\Desktop\C3D\C3D\Fakes\FastColoredTextBox.fakes : warning : Cannot generate shim for FastColoredTextBoxNS.WordWrapMode: type is an enum.
+C:\Users\Brayan\Desktop\C3D\C3D\Fakes\FastColoredTextBox.fakes : warning : Cannot generate shim for FastColoredTextBoxNS.HighlightingRangeType: type is an enum.
+C:\Users\Brayan\Desktop\C3D\C3D\Fakes\FastColoredTextBox.fakes : warning : Cannot generate shim for FastColoredTextBoxNS.FindEndOfFoldingBlockStrategy: type is an enum.
+C:\Users\Brayan\Desktop\C3D\C3D\Fakes\FastColoredTextBox.fakes : warning : Cannot generate shim for FastColoredTextBoxNS.BracketsHighlightStrategy: type is an enum.
+C:\Users\Brayan\Desktop\C3D\C3D\Fakes\FastColoredTextBox.fakes : warning : Cannot generate shim for FastColoredTextBoxNS.TextAreaBorderType: type is an enum.
+C:\Users\Brayan\Desktop\C3D\C3D\Fakes\FastColoredTextBox.fakes : warning : Cannot generate shim for FastColoredTextBoxNS.ScrollDirection: type is an enum.
+C:\Users\Brayan\Desktop\C3D\C3D\Fakes\FastColoredTextBox.fakes : warning : Cannot generate shim for FastColoredTextBoxNS.StyleIndex: type is an enum.
+C:\Users\Brayan\Desktop\C3D\C3D\Fakes\FastColoredTextBox.fakes : warning : Cannot generate shim for FastColoredTextBoxNS.CommandManager+<>c: type is not supported because of internal limitations.
+C:\Users\Brayan\Desktop\C3D\C3D\Fakes\FastColoredTextBox.fakes : warning : Cannot generate shim for FastColoredTextBoxNS.RangeInfo: type is not visible to exported or assembly(FastColoredTextBox.2.16.23.0.Fakes).
+C:\Users\Brayan\Desktop\C3D\C3D\Fakes\FastColoredTextBox.fakes : warning : Cannot generate shim for FastColoredTextBoxNS.ReplaceTextCommand+<>c: type is not supported because of internal limitations.
+C:\Users\Brayan\Desktop\C3D\C3D\Fakes\FastColoredTextBox.fakes : warning : Cannot generate shim for FastColoredTextBoxNS.ReplaceMultipleTextCommand+<>c: type is not supported because of internal limitations.
+C:\Users\Brayan\Desktop\C3D\C3D\Fakes\FastColoredTextBox.fakes : warning : Cannot generate shim for FastColoredTextBoxNS.VisibleState: type is an enum.
+C:\Users\Brayan\Desktop\C3D\C3D\Fakes\FastColoredTextBox.fakes : warning : Cannot generate shim for FastColoredTextBoxNS.IndentMarker: type is an enum.
+C:\Users\Brayan\Desktop\C3D\C3D\Fakes\FastColoredTextBox.fakes : warning : Cannot generate shim for FastColoredTextBoxNS.Range+<GetEnumerator_ColumnSelectionMode>d__113: type is not supported because of internal limitations.
+C:\Users\Brayan\Desktop\C3D\C3D\Fakes\FastColoredTextBox.fakes : warning : Cannot generate shim for FastColoredTextBoxNS.Range+<GetPlacesCyclic>d__110: type is not supported because of internal limitations.
+C:\Users\Brayan\Desktop\C3D\C3D\Fakes\FastColoredTextBox.fakes : warning : Cannot generate shim for FastColoredTextBoxNS.Range+<GetRanges>d__73: type is not supported because of internal limitations.
+C:\Users\Brayan\Desktop\C3D\C3D\Fakes\FastColoredTextBox.fakes : warning : Cannot generate shim for FastColoredTextBoxNS.Range+<GetRanges>d__77: type is not supported because of internal limitations.
+C:\Users\Brayan\Desktop\C3D\C3D\Fakes\FastColoredTextBox.fakes : warning : Cannot generate shim for FastColoredTextBoxNS.Range+<GetRangesByLines>d__74: type is not supported because of internal limitations.
+C:\Users\Brayan\Desktop\C3D\C3D\Fakes\FastColoredTextBox.fakes : warning : Cannot generate shim for FastColoredTextBoxNS.Range+<GetRangesByLines>d__75: type is not supported because of internal limitations.
+C:\Users\Brayan\Desktop\C3D\C3D\Fakes\FastColoredTextBox.fakes : warning : Cannot generate shim for FastColoredTextBoxNS.Range+<GetRangesByLinesReversed>d__76: type is not supported because of internal limitations.
+C:\Users\Brayan\Desktop\C3D\C3D\Fakes\FastColoredTextBox.fakes : warning : Cannot generate shim for FastColoredTextBoxNS.Range+<GetSubRanges>d__104: type is not supported because of internal limitations.
+C:\Users\Brayan\Desktop\C3D\C3D\Fakes\FastColoredTextBox.fakes : warning : Cannot generate shim for FastColoredTextBoxNS.Range+<System-Collections-Generic-IEnumerable<FastColoredTextBoxNS-Place>-GetEnumerator>d__88: type is not supported because of internal limitations.
+C:\Users\Brayan\Desktop\C3D\C3D\Fakes\FastColoredTextBox.fakes : warning : Cannot generate shim for FastColoredTextBoxNS.Range+<get_Chars>d__91: type is not supported because of internal limitations.
+C:\Users\Brayan\Desktop\C3D\C3D\Fakes\FastColoredTextBox.fakes : warning : Cannot generate shim for FastColoredTextBoxNS.FCTBDescriptionProvider: type is not visible to exported or assembly(FastColoredTextBox.2.16.23.0.Fakes).
+C:\Users\Brayan\Desktop\C3D\C3D\Fakes\FastColoredTextBox.fakes : warning : Cannot generate shim for FastColoredTextBoxNS.FCTBTypeDescriptor: type is not visible to exported or assembly(FastColoredTextBox.2.16.23.0.Fakes).
+C:\Users\Brayan\Desktop\C3D\C3D\Fakes\FastColoredTextBox.fakes : warning : Cannot generate shim for FastColoredTextBoxNS.FooTextChangedDescriptor: type is not visible to exported or assembly(FastColoredTextBox.2.16.23.0.Fakes).
+C:\Users\Brayan\Desktop\C3D\C3D\Fakes\FastColoredTextBox.fakes : warning : Cannot generate shim for FastColoredTextBoxNS.CharReader: type is not visible to exported or assembly(FastColoredTextBox.2.16.23.0.Fakes).
+C:\Users\Brayan\Desktop\C3D\C3D\Fakes\FastColoredTextBox.fakes : warning : Cannot generate shim for <PrivateImplementationDetails>: type is not supported because of internal limitations.
