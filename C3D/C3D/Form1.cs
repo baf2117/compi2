@@ -95,7 +95,7 @@ namespace C3D
             e.ChangedRange.SetStyle(OrangeStyle, @"""""|@""""|''|"".*""|'.?'");
             //comment highlighting
             e.ChangedRange.SetStyle(GrayStyle, @"(/-[^-]*-/)|({--[^-]*--})", RegexOptions.Multiline);
-            e.ChangedRange.SetStyle(GrayStyle, @"(##.*)|(//.*)", RegexOptions.Singleline);
+            e.ChangedRange.SetStyle(GrayStyle, @"(##[^\n]*)|(//[^\n]*)", RegexOptions.Singleline);
 
             //number highlighting
             // e.ChangedRange.SetStyle(MagentaStyle, @"\b\d+[\.]?\d*([eE]\-?\d+)?[lLdDfF]?\b|\b0x[a-fA-F\d]+\b");
@@ -402,6 +402,8 @@ namespace C3D
                 Ejecucion3d.Pila.Clear();
                 Ejecucion3d.stack.Clear();
                 Ejecucion3d.heap.Clear();
+                Ejecucion3d.pm = 0;
+                Ejecucion3d.am = 0;
                 raiz = ejec.reparar(raiz);
                 LinkedList<ParseTreeNode> lista =  ejec.linealizar(raiz);
                 Debuger deb = new Debuger(lista,cadena);

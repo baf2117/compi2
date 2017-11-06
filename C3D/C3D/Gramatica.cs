@@ -219,20 +219,20 @@ namespace C3D
 
             PRIV.Rule = protegido | privado | publico|Empty;
 
-            PARAMETROS1.Rule = PARAMETROS | Empty;
+          
 
 
             PARA.Rule = TIPO2 + id
                        |TIPO2 + id + corch1 + corch2;
 
 
-            PARAMETROS.Rule = MakePlusRule(PARAMETROS, ToTerm(",") ,PARA);
+            PARAMETROS.Rule = MakePlusRule(PARAMETROS, ToTerm(",") ,PARA)|Empty;
 
-            CONSTRUCTOR.Rule = constructor + corch1 + PARAMETROS1 + corch2 + dosp + Eos + BLOQUE;
+            CONSTRUCTOR.Rule = constructor + corch1 + PARAMETROS + corch2 + dosp + Eos + BLOQUE;
 
-            FUNCIONES.Rule = PRIV + funcion + TIPO2 + id + corch1 + PARAMETROS1+corch2 + dosp + Eos + BLOQUE;
+            FUNCIONES.Rule = PRIV + funcion + TIPO2 + id + corch1 + PARAMETROS+corch2 + dosp + Eos + BLOQUE;
 
-            METODOS.Rule = PRIV + metodo + id + corch1 +PARAMETROS1+ corch2 + dosp + Eos + BLOQUE;
+            METODOS.Rule = PRIV + metodo + id + corch1 +PARAMETROS+ corch2 + dosp + Eos + BLOQUE;
 
             BLOQUE.Rule = Indent + LSENTENCIAS + Dedent|Empty;
 
@@ -250,7 +250,7 @@ namespace C3D
 
             RET.Rule = retornar + E + Eos;
 
-            INSTANCIA.Rule = id + id + igual + nuevo + id + corch1 + PARAMETROS1 + corch2 + Eos|id + id + Eos;
+            INSTANCIA.Rule = id + id + igual + nuevo + id + corch1 + LE + corch2 + Eos|id + id + Eos;
 
             ASIGNACION.Rule = ATRIBUTO + ASG + Eos ;
 
@@ -260,9 +260,9 @@ namespace C3D
 
             ATRIBUTOS.Rule = id | id + corch1 + EA + corch2 | id + LVEC;
 
-            EA.Rule = E | Empty;
+            EA.Rule = MakePlusRule(EA,ToTerm("."),E)|Empty;
 
-            ASG.Rule = igual + E | igual + nuevo + id + corch1 + PARAMETROS1 + corch2;
+            ASG.Rule = igual + E | igual + nuevo + id + corch1 + LE + corch2;
                      
             CICLOS.Rule = IF|ELEGIR|PARAF | MIENTRAS | HACER |REPETIR | LOOP;
 
@@ -371,7 +371,7 @@ namespace C3D
             this.Root = S;
             this.NonGrammarTerminals.Add(comentarioLinea);
             this.NonGrammarTerminals.Add(comentarioBloque);
-            this.MarkTransient(VALOR,PRIV,TIPO,TIPO2,SENTENCIA,CUERPO2,EA,BLOQUE,CICLOS,CUERPO,PARAMETROS1);
+            this.MarkTransient(VALOR,PRIV,TIPO,TIPO2,SENTENCIA,CUERPO2,BLOQUE,CICLOS,CUERPO);
             this.RegisterOperators(2, Associativity.Left, mas, menos);
             this.RegisterOperators(3, Associativity.Left, por, division);
             this.RegisterOperators(4, Associativity.Left, poten);

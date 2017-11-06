@@ -211,18 +211,17 @@ namespace C3D
 
             PRIV.Rule = protegido | privado | publico|Empty;
 
-            PARAMETROS1.Rule = PARAMETROS | Empty;
-
+        
             PARA.Rule = TIPO2 + id
                        | TIPO2 + id + LVEC;
 
-            PARAMETROS.Rule = MakePlusRule(PARAMETROS, ToTerm(","), PARA);
+            PARAMETROS.Rule = MakePlusRule(PARAMETROS, ToTerm(","), PARA)|Empty;
 
-            CONSTRUCTOR.Rule = id + par1 + PARAMETROS1 + par2 +llave1+ BLOQUE + llave2;
+            CONSTRUCTOR.Rule = id + par1 + PARAMETROS + par2 +llave1+ BLOQUE + llave2;
 
-            FUNCIONES.Rule = par1 + PARAMETROS1 + par2 + llave1 + BLOQUE+llave2;
+            FUNCIONES.Rule = par1 + PARAMETROS + par2 + llave1 + BLOQUE+llave2;
 
-            METODOS.Rule = PRIV + metodo + id + par1 + PARAMETROS1 + par2 + llave1 + BLOQUE +llave2;
+            METODOS.Rule = PRIV + metodo + id + par1 + PARAMETROS + par2 + llave1 + BLOQUE +llave2;
 
             BLOQUE.Rule = MakeStarRule(BLOQUE, SENTENCIA);
 
@@ -248,7 +247,7 @@ namespace C3D
 
             EA.Rule =  LE | Empty;
 
-            ASG.Rule = igual + E| igual + nuevo + id + par1 + PARAMETROS1 + par2;
+            ASG.Rule = igual + E| igual + nuevo + id + par1 + EA + par2;
                      
 
             CICLOS.Rule = IF | PARAF | MIENTRAS | HACER | REPETIR | LOOP;

@@ -47,9 +47,11 @@
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.Pila = new System.Windows.Forms.TextBox();
-            this.Heap = new System.Windows.Forms.TextBox();
-            this.Stack = new System.Windows.Forms.TextBox();
+            this.Stack = new FastColoredTextBoxNS.FastColoredTextBox();
+            this.Heap = new FastColoredTextBoxNS.FastColoredTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.consola)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Stack)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Heap)).BeginInit();
             this.SuspendLayout();
             // 
             // consola
@@ -71,7 +73,6 @@
             this.consola.CharWidth = 8;
             this.consola.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.consola.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
-            this.consola.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.consola.IsReplaceMode = false;
             this.consola.Location = new System.Drawing.Point(25, 84);
             this.consola.Name = "consola";
@@ -239,33 +240,73 @@
             this.Pila.Size = new System.Drawing.Size(116, 220);
             this.Pila.TabIndex = 20;
             // 
-            // Heap
-            // 
-            this.Heap.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Heap.Location = new System.Drawing.Point(656, 84);
-            this.Heap.Multiline = true;
-            this.Heap.Name = "Heap";
-            this.Heap.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.Heap.Size = new System.Drawing.Size(72, 220);
-            this.Heap.TabIndex = 21;
-            // 
             // Stack
             // 
-            this.Stack.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Stack.Location = new System.Drawing.Point(562, 84);
-            this.Stack.Multiline = true;
+            this.Stack.AutoCompleteBracketsList = new char[] {
+        '(',
+        ')',
+        '{',
+        '}',
+        '[',
+        ']',
+        '\"',
+        '\"',
+        '\'',
+        '\''};
+            this.Stack.AutoScrollMinSize = new System.Drawing.Size(27, 14);
+            this.Stack.BackBrush = null;
+            this.Stack.CharHeight = 14;
+            this.Stack.CharWidth = 8;
+            this.Stack.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.Stack.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
+            this.Stack.Font = new System.Drawing.Font("Courier New", 9.75F);
+            this.Stack.IsReplaceMode = false;
+            this.Stack.Location = new System.Drawing.Point(539, 85);
             this.Stack.Name = "Stack";
-            this.Stack.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.Stack.Size = new System.Drawing.Size(72, 220);
+            this.Stack.Paddings = new System.Windows.Forms.Padding(0);
+            this.Stack.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.Stack.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("Stack.ServiceColors")));
+            this.Stack.Size = new System.Drawing.Size(94, 218);
             this.Stack.TabIndex = 22;
+            this.Stack.Zoom = 100;
+            // 
+            // Heap
+            // 
+            this.Heap.AutoCompleteBracketsList = new char[] {
+        '(',
+        ')',
+        '{',
+        '}',
+        '[',
+        ']',
+        '\"',
+        '\"',
+        '\'',
+        '\''};
+            this.Heap.AutoScrollMinSize = new System.Drawing.Size(27, 14);
+            this.Heap.BackBrush = null;
+            this.Heap.CharHeight = 14;
+            this.Heap.CharWidth = 8;
+            this.Heap.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.Heap.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
+            this.Heap.Font = new System.Drawing.Font("Courier New", 9.75F);
+            this.Heap.IsReplaceMode = false;
+            this.Heap.Location = new System.Drawing.Point(657, 84);
+            this.Heap.Name = "Heap";
+            this.Heap.Paddings = new System.Windows.Forms.Padding(0);
+            this.Heap.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.Heap.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("Heap.ServiceColors")));
+            this.Heap.Size = new System.Drawing.Size(84, 219);
+            this.Heap.TabIndex = 23;
+            this.Heap.Zoom = 100;
             // 
             // Debuger
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(888, 502);
-            this.Controls.Add(this.Stack);
             this.Controls.Add(this.Heap);
+            this.Controls.Add(this.Stack);
             this.Controls.Add(this.Pila);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.label6);
@@ -286,6 +327,8 @@
             this.Name = "Debuger";
             this.Text = "Debuger";
             ((System.ComponentModel.ISupportInitialize)(this.consola)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Stack)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Heap)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -310,7 +353,7 @@
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox Pila;
-        private System.Windows.Forms.TextBox Heap;
-        private System.Windows.Forms.TextBox Stack;
+        private FastColoredTextBoxNS.FastColoredTextBox Stack;
+        private FastColoredTextBoxNS.FastColoredTextBox Heap;
     }
 }

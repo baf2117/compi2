@@ -63,7 +63,7 @@ namespace C3D
                 return arbol.Root;
 
             }
-            generarImagen(raiz);
+           // generarImagen(raiz);
             TS ts = new TS();            
             ts.recolectarolc(raiz);
             return raiz;
