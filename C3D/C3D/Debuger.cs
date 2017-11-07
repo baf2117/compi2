@@ -87,6 +87,9 @@ namespace C3D
                     case "IF":
                         pos = ejec.IFF(accion, pos);
                         break;
+                    case "IFFALSE":
+                        pos = ejec.IFFA(accion, pos);
+                        break;
                     case "ASIGNASEL2":
                    //     ejec.asignaselfp2(accion);
                         pos++;
@@ -191,7 +194,7 @@ namespace C3D
             e.ChangedRange.SetStyle(PurpleStyle, @"\b\d+[\.]?\d*");
             e.ChangedRange.SetStyle(BlueStyle, @"\bt\d+");
             e.ChangedRange.SetStyle(BlueStyle, @"\bL\d+");
-            e.ChangedRange.SetStyle(BlueStyle, @"\b(goto|then|selfp|heap|stack|hp|sp|clase|llamar|hereda_de|entero|boolean|true|false|publico|privado|protegido|metodo|nuevo|principal|imprimir|importar|self|este|#region\b|#endregion\b)");
+            e.ChangedRange.SetStyle(BlueStyle, @"\b(iffalse|goto|then|selfp|heap|stack|hp|sp|clase|llamar|hereda_de|entero|boolean|true|false|publico|privado|protegido|metodo|nuevo|principal|imprimir|importar|self|este|#region\b|#endregion\b)");
 
             //clear folding markers
             e.ChangedRange.ClearFoldingMarkers();

@@ -31,11 +31,6 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.archivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.abrirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.guardarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.nuevaCarpetaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.nuevoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reportesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tablaDeSimbolosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.erroresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -58,6 +53,8 @@
             this.Directorios = new System.Windows.Forms.TreeView();
             this.imageList2 = new System.Windows.Forms.ImageList(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.gramáticaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.debug = new System.Windows.Forms.Button();
             this.Abrir = new System.Windows.Forms.Button();
             this.CarpetaA = new System.Windows.Forms.Button();
             this.guardar = new System.Windows.Forms.Button();
@@ -65,7 +62,6 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.Ejecutar = new System.Windows.Forms.Button();
-            this.debug = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ventana)).BeginInit();
@@ -87,7 +83,6 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.archivoToolStripMenuItem,
             this.reportesToolStripMenuItem,
             this.uMLToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
@@ -96,46 +91,12 @@
             this.menuStrip1.TabIndex = 6;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // archivoToolStripMenuItem
-            // 
-            this.archivoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.abrirToolStripMenuItem,
-            this.guardarToolStripMenuItem,
-            this.nuevaCarpetaToolStripMenuItem,
-            this.nuevoToolStripMenuItem});
-            this.archivoToolStripMenuItem.Name = "archivoToolStripMenuItem";
-            this.archivoToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
-            this.archivoToolStripMenuItem.Text = "Archivo";
-            // 
-            // abrirToolStripMenuItem
-            // 
-            this.abrirToolStripMenuItem.Name = "abrirToolStripMenuItem";
-            this.abrirToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
-            this.abrirToolStripMenuItem.Text = "Abrir";
-            // 
-            // guardarToolStripMenuItem
-            // 
-            this.guardarToolStripMenuItem.Name = "guardarToolStripMenuItem";
-            this.guardarToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
-            this.guardarToolStripMenuItem.Text = "Guardar";
-            // 
-            // nuevaCarpetaToolStripMenuItem
-            // 
-            this.nuevaCarpetaToolStripMenuItem.Name = "nuevaCarpetaToolStripMenuItem";
-            this.nuevaCarpetaToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
-            this.nuevaCarpetaToolStripMenuItem.Text = "Nueva Carpeta";
-            // 
-            // nuevoToolStripMenuItem
-            // 
-            this.nuevoToolStripMenuItem.Name = "nuevoToolStripMenuItem";
-            this.nuevoToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
-            this.nuevoToolStripMenuItem.Text = "Nuevo Archivo";
-            // 
             // reportesToolStripMenuItem
             // 
             this.reportesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tablaDeSimbolosToolStripMenuItem,
-            this.erroresToolStripMenuItem});
+            this.erroresToolStripMenuItem,
+            this.gramáticaToolStripMenuItem});
             this.reportesToolStripMenuItem.Name = "reportesToolStripMenuItem";
             this.reportesToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
             this.reportesToolStripMenuItem.Text = "Reportes";
@@ -189,7 +150,6 @@
             this.ventana.CharWidth = 8;
             this.ventana.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.ventana.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
-            this.ventana.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.ventana.IsReplaceMode = false;
             this.ventana.Location = new System.Drawing.Point(-4, 0);
             this.ventana.Name = "ventana";
@@ -255,7 +215,6 @@
             this.Consola.CharWidth = 8;
             this.Consola.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.Consola.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
-            this.Consola.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.Consola.IsReplaceMode = false;
             this.Consola.Location = new System.Drawing.Point(0, 0);
             this.Consola.Name = "Consola";
@@ -293,13 +252,12 @@
         '\"',
         '\'',
         '\''};
-            this.Errores.AutoScrollMinSize = new System.Drawing.Size(2, 14);
+            this.Errores.AutoScrollMinSize = new System.Drawing.Size(27, 14);
             this.Errores.BackBrush = null;
             this.Errores.CharHeight = 14;
             this.Errores.CharWidth = 8;
             this.Errores.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.Errores.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
-            this.Errores.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.Errores.IsReplaceMode = false;
             this.Errores.Location = new System.Drawing.Point(-4, 0);
             this.Errores.Name = "Errores";
@@ -335,13 +293,12 @@
         '\"',
         '\'',
         '\''};
-            this.procesos.AutoScrollMinSize = new System.Drawing.Size(2, 14);
+            this.procesos.AutoScrollMinSize = new System.Drawing.Size(27, 14);
             this.procesos.BackBrush = null;
             this.procesos.CharHeight = 14;
             this.procesos.CharWidth = 8;
             this.procesos.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.procesos.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
-            this.procesos.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.procesos.IsReplaceMode = false;
             this.procesos.Location = new System.Drawing.Point(-4, 0);
             this.procesos.Name = "procesos";
@@ -377,13 +334,12 @@
         '\"',
         '\'',
         '\''};
-            this.tresd.AutoScrollMinSize = new System.Drawing.Size(2, 14);
+            this.tresd.AutoScrollMinSize = new System.Drawing.Size(27, 14);
             this.tresd.BackBrush = null;
             this.tresd.CharHeight = 14;
             this.tresd.CharWidth = 8;
             this.tresd.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tresd.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
-            this.tresd.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.tresd.IsReplaceMode = false;
             this.tresd.Location = new System.Drawing.Point(0, 0);
             this.tresd.Name = "tresd";
@@ -419,13 +375,12 @@
         '\"',
         '\'',
         '\''};
-            this.optimizado.AutoScrollMinSize = new System.Drawing.Size(2, 14);
+            this.optimizado.AutoScrollMinSize = new System.Drawing.Size(27, 14);
             this.optimizado.BackBrush = null;
             this.optimizado.CharHeight = 14;
             this.optimizado.CharWidth = 8;
             this.optimizado.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.optimizado.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
-            this.optimizado.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.optimizado.IsReplaceMode = false;
             this.optimizado.Location = new System.Drawing.Point(0, 0);
             this.optimizado.Name = "optimizado";
@@ -450,13 +405,12 @@
         '\"',
         '\'',
         '\''};
-            this.fastColoredTextBox2.AutoScrollMinSize = new System.Drawing.Size(2, 14);
+            this.fastColoredTextBox2.AutoScrollMinSize = new System.Drawing.Size(27, 14);
             this.fastColoredTextBox2.BackBrush = null;
             this.fastColoredTextBox2.CharHeight = 14;
             this.fastColoredTextBox2.CharWidth = 8;
             this.fastColoredTextBox2.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.fastColoredTextBox2.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
-            this.fastColoredTextBox2.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.fastColoredTextBox2.IsReplaceMode = false;
             this.fastColoredTextBox2.Location = new System.Drawing.Point(0, 0);
             this.fastColoredTextBox2.Name = "fastColoredTextBox2";
@@ -494,6 +448,24 @@
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // gramáticaToolStripMenuItem
+            // 
+            this.gramáticaToolStripMenuItem.Name = "gramáticaToolStripMenuItem";
+            this.gramáticaToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.gramáticaToolStripMenuItem.Text = "Gramática";
+            this.gramáticaToolStripMenuItem.Click += new System.EventHandler(this.gramáticaToolStripMenuItem_Click);
+            // 
+            // debug
+            // 
+            this.debug.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("debug.BackgroundImage")));
+            this.debug.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.debug.Location = new System.Drawing.Point(491, 27);
+            this.debug.Name = "debug";
+            this.debug.Size = new System.Drawing.Size(57, 54);
+            this.debug.TabIndex = 101;
+            this.debug.UseVisualStyleBackColor = true;
+            this.debug.Click += new System.EventHandler(this.debug_Click);
             // 
             // Abrir
             // 
@@ -573,17 +545,6 @@
             this.Ejecutar.UseVisualStyleBackColor = true;
             this.Ejecutar.Click += new System.EventHandler(this.Ejecutar_Click);
             // 
-            // debug
-            // 
-            this.debug.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("debug.BackgroundImage")));
-            this.debug.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.debug.Location = new System.Drawing.Point(491, 27);
-            this.debug.Name = "debug";
-            this.debug.Size = new System.Drawing.Size(57, 54);
-            this.debug.TabIndex = 101;
-            this.debug.UseVisualStyleBackColor = true;
-            this.debug.Click += new System.EventHandler(this.debug_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -631,11 +592,6 @@
         private System.Windows.Forms.Button Ejecutar;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem archivoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem abrirToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem guardarToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem nuevaCarpetaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem nuevoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reportesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tablaDeSimbolosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem erroresToolStripMenuItem;
@@ -664,6 +620,7 @@
         public System.Windows.Forms.TabControl tabControl1;
         public System.Windows.Forms.TreeView Directorios;
         private System.Windows.Forms.Button debug;
+        private System.Windows.Forms.ToolStripMenuItem gramáticaToolStripMenuItem;
     }
 }
 

@@ -26,7 +26,7 @@ namespace C3D
             return arbol.Root;
 
         }
-        generarImagen(raiz);
+        //generarImagen(raiz);
         TS ts = new TS();
         ts.recolectar(raiz);
         return raiz;
@@ -152,6 +152,34 @@ namespace C3D
 
         }
 
+        public static void generarImagen3(ParseTreeNode raiz,int pos)
+        {
+            String grafica = Controldot.getDot(raiz);
+           
+
+            var filename = "C:\\Users\\Brayan\\Desktop\\graph.txt";
+
+            TextWriter tw = new StreamWriter(filename);
+            tw.WriteLine(grafica);
+            tw.Close();
+
+            String path = Directory.GetCurrentDirectory();
+
+            try
+            {
+
+                var command = "dot -Tjpg C:\\Users\\Brayan\\Desktop\\graph.txt -o C:\\Users\\Brayan\\Desktop\\graph"+pos+".jpg";
+                var procStarInfo = new System.Diagnostics.ProcessStartInfo("cmd", "/C" + command);
+                var proc = new System.Diagnostics.Process();
+                proc.StartInfo = procStarInfo;
+                proc.Start();
+                proc.WaitForExit();
+
+
+            }
+            catch (Exception x) { }
+
+        }
 
         public static String diagrama()
         {

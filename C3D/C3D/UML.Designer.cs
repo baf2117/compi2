@@ -38,6 +38,7 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button7 = new System.Windows.Forms.Button();
             clases = new System.Windows.Forms.ComboBox();
             this.Codigo = new System.Windows.Forms.Button();
             this.Lenguaje = new System.Windows.Forms.ComboBox();
@@ -45,7 +46,6 @@
             this.imagen = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.button7 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.venta)).BeginInit();
@@ -147,6 +147,16 @@
             this.groupBox1.Text = "Area de Código";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(38, 17);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(75, 23);
+            this.button7.TabIndex = 4;
+            this.button7.Text = "Diagrama";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
             // clases
             // 
             clases.FormattingEnabled = true;
@@ -196,6 +206,7 @@
             this.venta.CharWidth = 8;
             this.venta.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.venta.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
+            this.venta.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.venta.IsReplaceMode = false;
             this.venta.Location = new System.Drawing.Point(6, 46);
             this.venta.Name = "venta";
@@ -230,22 +241,13 @@
             // 
             // pictureBox1
             // 
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox1.Cursor = System.Windows.Forms.Cursors.SizeNESW;
             this.pictureBox1.Location = new System.Drawing.Point(6, 20);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(307, 424);
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
-            // 
-            // button7
-            // 
-            this.button7.Location = new System.Drawing.Point(38, 17);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(75, 23);
-            this.button7.TabIndex = 4;
-            this.button7.Text = "Diagrama";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // UML
             // 
@@ -282,7 +284,7 @@
         private System.Windows.Forms.Button imagen;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.PictureBox pictureBox1;
-        public static System.Windows.Forms.ComboBox clases;
         private System.Windows.Forms.Button button7;
+        public static System.Windows.Forms.ComboBox clases;
     }
 }

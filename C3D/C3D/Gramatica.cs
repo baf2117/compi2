@@ -201,7 +201,7 @@ namespace C3D
 
             IMPORT2.Rule = MakePlusRule(IMPORT2, ToTerm(","), PATH2);
 
-            PATH2.Rule = url + dosp + division + division + ToTerm("mynube") + division + id + punto + TIPOA | id + punto + TIPOA | ToTerm("c")+dosp+sla+ PATH + punto + TIPOA;
+            PATH2.Rule = url + dosp + division + division + ToTerm("mynube") + division + id + punto + TIPOA | id + punto + TIPOA | ToTerm("C")+dosp+sla+ PATH + punto + TIPOA;
 
             TIPOA.Rule = ToTerm("olc") | ToTerm("tree");
 
@@ -218,9 +218,6 @@ namespace C3D
             CUERPO.Rule = METODOS | FUNCIONES |DECG | CONSTRUCTOR;  
 
             PRIV.Rule = protegido | privado | publico|Empty;
-
-          
-
 
             PARA.Rule = TIPO2 + id
                        |TIPO2 + id + corch1 + corch2;

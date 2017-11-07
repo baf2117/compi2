@@ -20,3 +20,4 @@ C:\Users\Brayan\Desktop\C3D\C3D\obj\Debug\C3D.Arelaciones.resources
 C:\Users\Brayan\Desktop\C3D\C3D\obj\Debug\C3D.Guardar.resources
 C:\Users\Brayan\Desktop\C3D\C3D\obj\Debug\C3D.Folder.resources
 C:\Users\Brayan\Desktop\C3D\C3D\obj\Debug\C3D.Debuger.resources
+C:\Users\Brayan\Desktop\C3D\C3D\obj\Debug\C3D.ReporteG.resources

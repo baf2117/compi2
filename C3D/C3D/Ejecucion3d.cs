@@ -178,6 +178,9 @@ namespace C3D
                     case "IF":
                         pos = IFF(accion, pos);
                         break;
+                    case "IFFALSE":
+                        pos = IFFA(accion, pos);
+                        break;
                     case "ASIGNASEL2":
                         //     ejec.asignaselfp2(accion);
                         pos++;
@@ -2030,6 +2033,90 @@ namespace C3D
 
 
             return pos+1;
+        }
+
+        public int IFFA(ParseTreeNode raiz, int pos)
+        {
+            ParseTreeNode valor1 = raiz.ChildNodes.ElementAt(1).ChildNodes.ElementAt(0);
+            String accion = raiz.ChildNodes.ElementAt(2).ChildNodes.ElementAt(0).Token.Text;
+            ParseTreeNode valor2 = raiz.ChildNodes.ElementAt(3).ChildNodes.ElementAt(0);
+
+            double val1 = 0;
+            double val2 = 0;
+            switch (valor1.Term.Name)
+            {
+                case "numero":
+                case "decimal":
+                    val1 = Convert.ToDouble(valor1.Token.Text);
+                    break;
+                case "temporal":
+                    val1 = Convert.ToDouble(buscarpila(valor1.Token.Text));
+                    break;
+                default:
+                    val1 = 98596321789456321.966997812345;
+                    break;
+            }
+            switch (valor2.Term.Name)
+            {
+                case "numero":
+                case "decimal":
+                    val2 = Convert.ToDouble(valor2.Token.Text);
+                    break;
+                case "temporal":
+                    val2 = Convert.ToDouble(buscarpila(valor2.Token.Text));
+                    break;
+                default:
+                    val2 = 98596321789456321.966997812345;
+                    break;
+
+            }
+
+            switch (accion)
+            {
+                case ">":
+                    if (val1 <= val2)
+                    {
+                        return gotoo(raiz.ChildNodes.ElementAt(5).Token.Text);
+                    }
+                    break;
+                case "<":
+                    if (val1 >=val2)
+                    {
+                        return gotoo(raiz.ChildNodes.ElementAt(5).Token.Text);
+                    }
+                    break;
+                case "=":
+                    if (val1 != val2)
+                    {
+                        return gotoo(raiz.ChildNodes.ElementAt(5).Token.Text);
+                    }
+                    break;
+                case "!=":
+                    if (val1 == val2)
+                    {
+                        return gotoo(raiz.ChildNodes.ElementAt(5).Token.Text);
+                    }
+                    break;
+                case ">=":
+                    if (val1 < val2)
+                    {
+                        return gotoo(raiz.ChildNodes.ElementAt(5).Token.Text);
+                    }
+                    break;
+                case "<=":
+                    if (val1 > val2)
+                    {
+                        return gotoo(raiz.ChildNodes.ElementAt(5).Token.Text);
+                    }
+                    break;
+
+
+
+            }
+
+
+
+            return pos + 1;
         }
 
         public ParseTreeNode reparar(ParseTreeNode raiz)

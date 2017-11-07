@@ -72,6 +72,7 @@ namespace C3D
             ASIGNAHEAP = new NonTerminal("ASIGNAHEAP"),
             ASIGNADS = new NonTerminal("ASIGNADS"),
             IF = new NonTerminal("IF"),
+            IFFALSE = new NonTerminal ("IFFALSE"),
             LLAMADA = new NonTerminal("LLAMADA"),
             METODO = new NonTerminal("METODO"),
             OPEREL = new NonTerminal("OPEREL"),
@@ -97,7 +98,7 @@ namespace C3D
 
             S.Rule = MakePlusRule(S,BLOQUE);
 
-            BLOQUE.Rule = GOTO | ASIGNAHP |ASIGNASEL1 | ASIGNASP|ASIGNASEL2|ASIGNASTACK|ASIGNAHEAP|ASIGNADS|RETORNO|METODO|ASIGNACIONT|LLAMADA | IMPRIMIR|ETIQUETA | IF ;
+            BLOQUE.Rule = GOTO | ASIGNAHP |IFFALSE|ASIGNASEL1 | ASIGNASP|ASIGNASEL2|ASIGNASTACK|ASIGNAHEAP|ASIGNADS|RETORNO|METODO|ASIGNACIONT|LLAMADA | IMPRIMIR|ETIQUETA | IF ;
 
             RETORNO.Rule = retorno + pt;
 
@@ -133,6 +134,7 @@ namespace C3D
 
             IF.Rule = si + VALOR + OPEREL + VALOR  + gotoo + label + pt;
 
+            IFFALSE.Rule = sif + VALOR + OPEREL + VALOR + gotoo + label + pt;
 
             OPEREL.Rule = igual
                          | mayor

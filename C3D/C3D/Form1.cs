@@ -49,6 +49,17 @@ namespace C3D
                 Ejecucion3d.heap.Clear();
                 Ejecucion3d.pm = 0;
                 Ejecucion3d.am = 0;
+                for (int i = 0; i < 100; i++) {
+                    Ejecucion3d nuevo = new Ejecucion3d();
+                    nuevo.valor = "";
+                    Ejecucion3d.stack.AddLast(nuevo);
+                }
+                for (int i = 0; i < 100; i++)
+                {
+                    Ejecucion3d nuevo = new Ejecucion3d();
+                    nuevo.valor = "";
+                    Ejecucion3d.heap.AddLast(nuevo);
+                }
                 Sintactico1.analizarolc(contenido);
                 Ejecucion3d.escribir3d();
                 Ejecucion3d eje = new Ejecucion3d();
@@ -102,7 +113,7 @@ namespace C3D
             e.ChangedRange.SetStyle(PurpleStyle, @"\b\d+[\.]?\d*");
             e.ChangedRange.SetStyle(BlueStyle, @"\bt\d+");
             e.ChangedRange.SetStyle(BlueStyle, @"\bL\d+");
-            e.ChangedRange.SetStyle(BlueStyle, @"\b(__constructor|mientras|hacer|si|si_no|si_no_si|Sino|not|or|and|Para|retorno|Si|caso|defecto|Mientras|Repetir|until|cadena|caracter|decimal|goto|then|selfp|heap|stack|hp|sp|clase|llamar|hereda_de|entero|boolean|true|false|publico|privado|protegido|metodo|nuevo|principal|imprimir|importar|self|este|#region\b|#endregion\b)");
+            e.ChangedRange.SetStyle(BlueStyle, @"\b(iffalse|__constructor|mientras|hacer|si|si_no|si_no_si|Sino|not|or|and|Para|retorno|Si|caso|defecto|Mientras|Repetir|until|cadena|caracter|decimal|goto|then|selfp|heap|stack|hp|sp|clase|llamar|hereda_de|entero|boolean|true|false|publico|privado|protegido|metodo|nuevo|principal|imprimir|importar|self|este|#region\b|#endregion\b)");
 
             //clear folding markers
             e.ChangedRange.ClearFoldingMarkers();
@@ -404,11 +415,29 @@ namespace C3D
                 Ejecucion3d.heap.Clear();
                 Ejecucion3d.pm = 0;
                 Ejecucion3d.am = 0;
+                for (int i = 0; i < 100; i++)
+                {
+                    Ejecucion3d nuevo = new Ejecucion3d();
+                    nuevo.valor = "";
+                    Ejecucion3d.stack.AddLast(nuevo);
+                }
+                for (int i = 0; i < 100; i++)
+                {
+                    Ejecucion3d nuevo = new Ejecucion3d();
+                    nuevo.valor = "";
+                    Ejecucion3d.heap.AddLast(nuevo);
+                }
                 raiz = ejec.reparar(raiz);
                 LinkedList<ParseTreeNode> lista =  ejec.linealizar(raiz);
                 Debuger deb = new Debuger(lista,cadena);
                 deb.Show();
             }
+        }
+
+        private void gramáticaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ReporteG nuevo = new ReporteG();
+            nuevo.Show();
         }
     }
 }
