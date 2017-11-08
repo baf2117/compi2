@@ -14,7 +14,7 @@ namespace C3D
     {
         public String nombre;
         public int Tipo = 0;// 1 = clase, 2 = parametro , 3 = objeto , 4 = variable, atributo = 5 , metodo = 6 , funcion = 7,constructor = 8 , retorno = 9
-        public int tipo2; // 1 = integer  , 2 = string , 3 = booleano , 4 = decimal , 0 = void, 5 = clase, objeto = 6 ;
+        public int tipo2; // 1 = integer  , 2 = string , 3 = booleano , 4 = decimal , 0 = void, 5 = clase, objeto = 6, caracter =7 ;
         public int posicion;
         public int heredado = 0;
         public int localidad = 0;
@@ -271,6 +271,7 @@ namespace C3D
                                         {
                                             TS nuevoh = new TS(tablita2.nombre, tablita2.Tipo, pos, tablita2.tipo2, tablita2.visibilidad, 1, tablita2.etiqueta, tablita2.arreglo, tablita2.dimensiones, tablita2.tamanios);
                                             nuevoh.heredado = 1;
+                                            nuevoh.auxte = tablita2.auxte;
                                             nue.elementos.Add(nuevoh);
                                         }
                                         if (tablita2.Tipo == 5)
@@ -507,6 +508,7 @@ namespace C3D
                                         {
                                             TS nuevoh = new TS(tablita2.nombre, tablita2.Tipo, pos, tablita2.tipo2, tablita2.visibilidad, 1, tablita2.etiqueta, tablita2.arreglo, tablita2.dimensiones, tablita2.tamanios);
                                             nuevoh.heredado = 1;
+                                            nuevoh.auxte = tablita2.auxte;
                                             nue.elementos.Add(nuevoh);
                                         }
                                         if (tablita2.Tipo == 5)
@@ -1150,8 +1152,14 @@ namespace C3D
                         case "booleano":
                             tipov2 = 3;
                             break;
-                        default:
+                        case "decimal":
                             tipov2 = 4;
+                            break;
+                        case "caracter":
+                            tipov2 = 7;
+                            break;
+                        default:
+                            tipov2 = 6;
                             break;
                     }
 
@@ -1161,6 +1169,11 @@ namespace C3D
 
 
                     TS nuevo = new TS(nombre, 7, 0, tipov2, visibilidad, 0, etiqueta, 0, 0, null);
+                    if (nuevo.tipo2 == 6)
+                    {
+                        nuevo.auxte = tipov;
+
+                    }
                     actualc.elementos.Add(nuevo);
                     TS ret = new TS("ret", 9, 0, 9, visibilidad, 1, "", 0, 0, null);
                     nuevo.elementos.Add(ret);
@@ -1687,11 +1700,21 @@ namespace C3D
                         case "booleano":
                             tipov2 = 3;
                             break;
-                        default:
+                        case "decimal":
                             tipov2 = 4;
+                            break;
+                        case "caracter":
+                            tipov2 = 7;
+                            break;
+                        default:
+                            tipov2 = 6;
                             break;
                     }
                     TS nuevo = new TS(nombre, 7, 0, tipov2, visibilidad, 0, etiqueta, 0, 0, null);
+                    if (nuevo.tipo2 == 6)
+                    {
+                        nuevo.auxte = tipof;
+                    }
                     actualc.elementos.Add(nuevo);
                     TS ret = new TS("ret", 0, 0, 0, visibilidad, 1, "", 0, 0, null);
                     nuevo.elementos.Add(ret);
@@ -1910,8 +1933,11 @@ namespace C3D
                 case "booleano":
                     tipov2 = 3;
                     break;
-                default:
+                case "caracter":
                     tipov2 = 4;
+                    break;
+                default:
+                    tipov2 = 6;
                     break;
             }
 
@@ -1923,6 +1949,7 @@ namespace C3D
                 {
 
                     TS nuevo = new TS(hijo.Token.Text, 5, relativa, tipov2, visibilidad, 1, "", 0, 0, null);
+                    nuevo.auxte = tipov;
                     relativa++;
                     globales.Add(nuevo);
 
@@ -1951,6 +1978,7 @@ namespace C3D
 
                 TS nuevo2 = new TS(aux3.ChildNodes.ElementAt(0).Token.Text, 5, relativa, tipov2, visibilidad, 1, "", 1, dimen, dimensi);
                 nuevo2.valores = valores;
+                nuevo2.auxte = tipov;
                 relativa++;
                 globales.Add(nuevo2);
 
@@ -2031,8 +2059,11 @@ namespace C3D
                 case "booleano":
                     tipov2 = 3;
                     break;
-                default:
+                case "caracter":
                     tipov2 = 4;
+                    break;
+                default:
+                    tipov2 = 6;
                     break;
             }
 
@@ -2062,6 +2093,7 @@ namespace C3D
 
                     TS nuevo2 = new TS(aux2.Token.Text, 5, relativa, tipov2, visibilidad, 1, "", 1, dimen, dimensi);
                     nuevo2.valores = valores;
+                    nuevo2.auxte = tipov;
                     relativa++;
                     globales.Add(nuevo2);
 
@@ -2078,6 +2110,7 @@ namespace C3D
 
                         TS nuevo = new TS(hijo.Token.Text, 5, relativa, tipov2, visibilidad, 1, "", 0, 0, null);
                         relativa++;
+                        nuevo.auxte = tipov;
                         globales.Add(nuevo);
 
                     }
@@ -2089,6 +2122,7 @@ namespace C3D
             {
                 TS nuevo2 = new TS(aux2.Token.Text, 5, relativa, tipov2, visibilidad, 1, "", 0, 0, null);
                 relativa++;
+                nuevo2.auxte = tipov;
                 globales.Add(nuevo2);
 
 
@@ -2212,7 +2246,177 @@ namespace C3D
         {
 
             String ret = "";
+            if (raiz.Term.Name.Equals("INSTANCIA"))
+            {
+                String tipov = raiz.ChildNodes[1].Token.Text;
+                int tipov2;
 
+                switch (tipov)
+                {
+                    case "entero":
+                        tipov2 = 1;
+                        break;
+                    case "cadena":
+                        tipov2 = 2;
+                        break;
+                    case "booleano":
+                        tipov2 = 3;
+                        break;
+                    case "decimal":
+                        tipov2 = 4;
+                        break;
+                    default:
+                        tipov2 = 6;
+                        break;
+                }
+
+                if (tipov2 != 6)
+                    {
+                        errore += "Problema en declarar primitivo como instancia, col: " + raiz.ChildNodes[0].Token.Location.Column + ",Fil :" + raiz.ChildNodes[0].Token.Location.Line + "\n";
+                        return "";
+
+                    }
+                  
+
+
+                    if (!tipov.Equals(tipov))
+                    {
+
+                        errore += "Problema en  instancia, col: " + raiz.ChildNodes[0].Token.Location.Column + ",Fil :" + raiz.ChildNodes[0].Token.Location.Line + "\n";
+                        return "";
+                    }
+                    bool bandera = true;
+                    foreach (String clase in actualc.importadas)
+                    {
+
+                        if (clase.Equals(tipov))
+                        {
+                            bandera = false;
+
+
+                        }
+
+
+                    }
+
+                   
+
+
+                    ParseTreeNode insta = raiz;
+
+                    int canti = 0;
+                    int canti2 = 0;
+                    ParseTreeNode para;
+                    if (insta.ChildNodes.Count > 2)
+                    {
+                        para = insta.ChildNodes.ElementAt(2);
+                        canti = para.ChildNodes.Count;
+                    }
+
+                    foreach (TS clase in TablaSimbolos)
+                    {
+                        if (clase.nombre.Equals(tipov))
+                        {
+
+                            foreach (TS constru in clase.elementos)
+                            {
+                                String[] arregla = Regex.Split(constru.nombre, "init_");
+                                char sig = '1';
+                                if (arregla.Count() > 1)
+                                {
+                                    String auxs = arregla[1];
+                                    sig = auxs[0];
+                                }
+
+
+
+
+                                if (constru.Tipo == 8 && sig.Equals('2'))
+                                {
+
+                                    canti2 = cantip(constru);
+
+                                    if (canti2 == canti)
+                                    {
+
+                                        if (canti2 == 0)
+                                        {
+                                            String t1 = Ejecucion3d.generatemp();
+                                            Ejecucion3d.cadenota += t1 + "= sp + " + actualM.peso + ";\n";
+                                            Ejecucion3d.cadenota += "stack[" + t1 + "] = 00;\n";
+                                            Ejecucion3d.cadenota += "sp = sp + " + actualM.peso + ";\n";
+                                            Ejecucion3d.cadenota += "init_" + tipov + "1();\n";
+                                            t1 = Ejecucion3d.generatemp();
+                                            Ejecucion3d.cadenota += t1 + "=stack[sp];\n";
+                                            Ejecucion3d.cadenota += "sp = sp - " + actualM.peso + ";\n";
+                                           
+                                            String t2 = Ejecucion3d.generatemp();
+                                            Ejecucion3d.cadenota += t2 + "= sp + " + actualM.peso + ";\n";
+                                            Ejecucion3d.cadenota += "stack[" + t2 + "] = 00;\n";
+                                            Ejecucion3d.cadenota += t2 + "=" + t2 + " + 1 ;\n";
+                                            Ejecucion3d.cadenota += "stack[" + t2 + "] = " + t1 + ";\n";
+                                            Ejecucion3d.cadenota += "sp = sp + " + actualM.peso + ";\n";
+                                            String tsp = Ejecucion3d.generatemp();
+                                            Ejecucion3d.cadenota += tsp + "= selfp;\n";
+                                            Ejecucion3d.cadenota += "selfp = " + t1 + ";\n";
+                                            Ejecucion3d.cadenota += constru.etiqueta + "();\n";
+                                            Ejecucion3d.cadenota += "sp = sp - " + actualM.peso + ";\n";
+                                            Ejecucion3d.cadenota += "selfp = " + tsp + ";\n";
+                                            return t1;
+                                        }
+                                        else
+                                        {
+
+
+                                            String t1 = Ejecucion3d.generatemp();
+                                            Ejecucion3d.cadenota += t1 + "= sp + " + actualM.peso + ";\n";
+                                            Ejecucion3d.cadenota += "stack[" + t1 + "] = 00;\n";
+                                            Ejecucion3d.cadenota += "sp = sp + " + actualM.peso + ";\n";
+                                            Ejecucion3d.cadenota += "init_" + tipov + "1();\n";
+                                            t1 = Ejecucion3d.generatemp();
+                                            Ejecucion3d.cadenota += t1 + "=stack[sp];\n";
+                                            Ejecucion3d.cadenota += "sp = sp - " + actualM.peso + ";\n";
+                                           
+                                            String t2 = Ejecucion3d.generatemp();
+                                            Ejecucion3d.cadenota += t2 + "= sp + " + actualM.peso + ";\n";
+                                            Ejecucion3d.cadenota += "stack[" + t2 + "] = 00;\n";
+                                            Ejecucion3d.cadenota += t2 + "=" + t2 + " + 1 ;\n";
+                                            Ejecucion3d.cadenota += "stack[" + t2 + "] = " + t1 + ";\n";
+
+                                            ParseTreeNode parafin = insta.ChildNodes.ElementAt(2);
+                                            foreach (ParseTreeNode parax in parafin.ChildNodes)
+                                            {
+
+                                                String ex = Exp(parax);
+                                                Ejecucion3d.cadenota += t2 + "=" + t2 + " + 1 ;\n";
+                                                Ejecucion3d.cadenota += "stack[" + t2 + "] = " + ex + ";\n";
+
+                                            }
+                                            Ejecucion3d.cadenota += "sp = sp + " + actualM.peso + ";\n";
+                                            String tsp = Ejecucion3d.generatemp();
+                                            Ejecucion3d.cadenota += tsp + "= selfp;\n";
+                                            Ejecucion3d.cadenota += "selfp = " + t1 + ";\n";
+                                            Ejecucion3d.cadenota += constru.etiqueta + "();\n";
+                                            Ejecucion3d.cadenota += "sp = sp - " + actualM.peso + ";\n";
+                                            Ejecucion3d.cadenota += "selfp = " + tsp + ";\n";
+                                            return t1;
+
+                                        }
+
+
+                                    }
+                                }
+
+                            }
+
+                        }
+                    }
+
+
+
+                
+
+            }
             if (raiz.Term.Name.Equals("VALA"))
             {
 
@@ -2547,7 +2751,7 @@ namespace C3D
                                 t4 = t2;
                                 int i = 0;
 
-
+                                Boolean banderavalor = false;
                                 foreach (ParseTreeNode atri in aux.ChildNodes)
                                 {
                                     if (i == 0)
@@ -2567,7 +2771,34 @@ namespace C3D
                                                 {
                                                     if (tablita2.nombre.Equals(nombre))
                                                     {
+                                                        banderavalor = false;
+                                                        //ver si es metodo o funcion y si es funcion que devuelva objeto para seguir 
                                                         String t3 = Ejecucion3d.generatemp();
+                                                        String reto = Ejecucion3d.generatemp();
+                                                        if (tablita2.Tipo == 6 || tablita2.Tipo == 7)
+                                                        {
+                                                            Ejecucion3d.cadenota += t3 + "= selfp;\n";
+                                                            Ejecucion3d.cadenota += "selfp = " + t4 + ";\n";
+                                                            ParseTreeNode param = atri.ChildNodes.ElementAt(1);
+                                                            String txy = Ejecucion3d.generatemp();
+                                                            Ejecucion3d.cadenota += txy + "= sp +" + actualM.peso + ";\n";
+                                                            Ejecucion3d.cadenota += "stack[" + txy + "]=00;\n";
+                                                            Ejecucion3d.cadenota += txy + "=" + txy + "+ 1;\n";
+                                                            foreach (ParseTreeNode param1 in param.ChildNodes)
+                                                            {
+                                                                String tyx = Exp(param1);
+                                                                Ejecucion3d.cadenota += "stack[" + txy + "]=" + tyx + ";\n";
+                                                                Ejecucion3d.cadenota += txy + "=" + txy + "+ 1;\n";
+                                                            }
+                                                            Ejecucion3d.cadenota += "sp = sp +" + actualM.peso + ";\n";
+                                                            Ejecucion3d.cadenota += tablita2.etiqueta + "();\n";
+                                                            Ejecucion3d.cadenota += reto + "=stack[sp];\n";
+                                                            Ejecucion3d.cadenota += "sp = sp -" + actualM.peso + ";\n";
+                                                            Ejecucion3d.cadenota += "selfp = " + t3 + ";\n";
+                                                            banderavalor = true;
+                                                            t4 = reto;
+                                                        }else { 
+
                                                         Ejecucion3d.cadenota += t3 + "=" + t4 + "+" + tablita2.posicion + ";\n";
                                                         if (tablita2.arreglo == 1)
                                                         {
@@ -2594,27 +2825,38 @@ namespace C3D
                                                             }
 
 
-                                                        } else if (tablita2.Tipo == 3)
+                                                        }
+                                                        else if (tablita2.Tipo == 3)
                                                         {
                                                             Ejecucion3d.cadenota += t4 + "= heap[" + t3 + "];\n";
 
 
-                                                        } else
+                                                        }
+                                                        else
                                                         {
                                                             t4 = t3;
 
                                                         }
-                                                        clase = tablita2.etiqueta;
+                                                    }
+                                                        if (tablita2.tipo2 == 6&&tablita2.Tipo==7)
+                                                        {
+                                                            clase = tablita2.auxte;
+                                                        }
+                                                        else
+                                                        {
+                                                            clase = tablita2.etiqueta;
+                                                        }
                                                         tipoex = conver(tablita2.tipo2);
-
-
-
                                                     }
                                                 }
                                             }
                                         }
                                     }
                                     i++;
+                                }
+                                if (banderavalor)
+                                {
+                                    return t4;
                                 }
 
                                 String t5 = Ejecucion3d.generatemp();
@@ -2627,7 +2869,7 @@ namespace C3D
                             foreach (TS tablita in actualc.elementos)
                             {
 
-                                if (tablita.Tipo == 3 && tablita.nombre.Equals(nombre))
+                                if ((tablita.Tipo == 3|tablita.tipo2==6) && tablita.nombre.Equals(nombre))
                                 {
                                     String t2 = Ejecucion3d.generatemp();
                                     Ejecucion3d.cadenota += t2 + "= selfp + " + tablita.posicion + ";\n";
@@ -2658,6 +2900,10 @@ namespace C3D
 
                                     }
                                     String clase = tablita.etiqueta;
+                                    if (clase.Equals(""))
+                                    {
+                                        clase = tablita.auxte;
+                                    }
                                     t4 = t2;
                                     int i = 0;
 
@@ -2670,7 +2916,14 @@ namespace C3D
                                         }
                                         else
                                         {
-                                            nombre = atri.Token.Text;
+                                            try
+                                            {
+                                                nombre = atri.Token.Text;
+                                            }
+                                            catch
+                                            {
+                                                nombre = atri.ChildNodes[0].Token.Text;
+                                            }
 
                                             foreach (TS clasesita in TS.TablaSimbolos)
                                             {
@@ -3278,9 +3531,10 @@ namespace C3D
                             {
                                 if (tablita.nombre.Equals(nombre) && tablita.Tipo == 7)
                                 {
+                                    ParseTreeNode auxx = aux.ChildNodes[0];
                                     int canti = cantip(tablita);
 
-                                    int canti2 = 0;
+                                    int canti2 = auxx.ChildNodes[1].ChildNodes.Count() ;
                                     if (raiz.ChildNodes.Count > 1)
                                     {
                                         canti2 = raiz.ChildNodes.ElementAt(2).ChildNodes.Count();
@@ -3299,9 +3553,9 @@ namespace C3D
                                     String tz = "";
                                     if (canti > 0)
                                     {
-                                        foreach (ParseTreeNode lee in raiz.ChildNodes.ElementAt(1).ChildNodes)
+                                        foreach (ParseTreeNode lee in auxx.ChildNodes.ElementAt(1).ChildNodes)
                                         {
-                                            tz = Exp(lee);
+                                            tz = Exp(lee.ChildNodes[1]);
                                             Ejecucion3d.cadenota += "stack [" + ty + "] =" + tz + ";\n";
                                             Ejecucion3d.cadenota += ty + "=" + ty + "+1;\n";
                                         }
@@ -3990,6 +4244,7 @@ namespace C3D
             aux = raiz.ChildNodes.ElementAt(0);
             aux2 = raiz.ChildNodes.ElementAt(1).ChildNodes.ElementAt(0);
             String nombre = aux.ChildNodes.ElementAt(0).ChildNodes.ElementAt(0).Token.Text;
+            auxte = nombre;
             String t1 = Exp(aux2);
             bool bandera = false;
 
@@ -4099,10 +4354,10 @@ namespace C3D
 
                                         foreach (TS tablita2 in clasesita.elementos)
                                         {
-                                            if (tablita2.nombre.Equals(nombre) && tablita.Tipo == 5)
+                                            if (tablita2.nombre.Equals(nombre) && tablita2.Tipo == 5)
                                             {
                                                 String t3 = Ejecucion3d.generatemp();
-                                                Ejecucion3d.cadenota += t3 + "= heap[" + t4 + "];\n";
+                                                Ejecucion3d.cadenota += t3 + "= stack[" + t4 + "];\n";
                                                 t4 = Ejecucion3d.generatemp();
                                                 Ejecucion3d.cadenota += t4 + "=" + t3 + "+" + tablita2.posicion + ";\n";
 
@@ -4128,12 +4383,16 @@ namespace C3D
                     foreach (TS tablita in actualc.elementos)
                     {
 
-                        if (tablita.Tipo == 3 && tablita.nombre.Equals(nombre))
+                        if ((tablita.Tipo == 3|tablita.tipo2==6) && tablita.nombre.Equals(nombre))
                         {
                             String t2 = Ejecucion3d.generatemp();
                             Ejecucion3d.cadenota += t2 + "= selfp + " + tablita.posicion + ";\n";
 
                             String clase = tablita.etiqueta;
+                            if (clase.Equals(""))
+                            {
+                                clase = tablita.auxte;
+                            }
                             t4 = t2;
                             int i = 0;
 
@@ -4146,7 +4405,14 @@ namespace C3D
                                 }
                                 else
                                 {
-                                    nombre = atri.Token.Text;
+                                    try
+                                    {
+                                        nombre = atri.Token.Text;
+                                    }
+                                    catch
+                                    {
+                                        nombre = atri.ChildNodes[0].Token.Text;
+                                    }
 
                                     foreach (TS clasesita in TS.TablaSimbolos)
                                     {
@@ -4162,11 +4428,15 @@ namespace C3D
                                                     Ejecucion3d.cadenota += t3 + " = heap[" + t4 + "];\n";
                                                     t4 = Ejecucion3d.generatemp();
                                                     Ejecucion3d.cadenota += t4 + "=" + t3 + "+" + tablita2.posicion + ";\n";
-
+                                                    goto salx1;
                                                 }
+                                                
                                             }
+                                            salx1:;
                                         }
+                                        goto salx2;
                                     }
+                                    salx2:;
                                 }
                                 i++;
                             }
@@ -6642,6 +6912,9 @@ namespace C3D
                     case "ELEGIR":
                         Elegir(bloquesito);
                         break;
+                    case "RET":
+                        Retornot(bloquesito);
+                        break;
                     default:
                         break;
                 }
@@ -6663,6 +6936,12 @@ namespace C3D
         public void Retorno(ParseTreeNode bloque)
         {
             String t2 = Exp(bloque.ChildNodes.ElementAt(1));
+            Ejecucion3d.cadenota += "stack[sp]=" + t2 + ";\n";
+        }
+
+        public void Retornot(ParseTreeNode bloque)
+        {
+            String t2 = Expt(bloque.ChildNodes.ElementAt(1));
             Ejecucion3d.cadenota += "stack[sp]=" + t2 + ";\n";
         }
 

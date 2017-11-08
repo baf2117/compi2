@@ -247,7 +247,7 @@ namespace C3D
 
             EA.Rule =  LE | Empty;
 
-            ASG.Rule = igual + E| igual + nuevo + id + par1 + EA + par2;
+            ASG.Rule = igual + E| igual +INSTANCIA;
                      
 
             CICLOS.Rule = IF | PARAF | MIENTRAS | HACER | REPETIR | LOOP;
