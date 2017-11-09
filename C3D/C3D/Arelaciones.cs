@@ -39,6 +39,7 @@ namespace C3D
 
             clasesuml.Relaciones.Add(nueva);
             MessageBox.Show("Relacion agregada");
+            this.Close();
         }
     }
 }

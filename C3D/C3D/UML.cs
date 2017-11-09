@@ -163,7 +163,17 @@ namespace C3D
         private void olc(clasesuml clase)
         {
             venta.Text = "";
+            foreach (Relaciones rel in clasesuml.Relaciones)
+            {
+
+                if (rel.clasea.Equals(clase.Nombre))
+                {
+                    venta.Text += " llamar(\" " + rel.claseb + ".olc\");\n";
+                    goto siguiente;
+                }
+            }
             venta.Text += "clase "+clase.Nombre;
+           
             foreach (Relaciones rel in clasesuml.Relaciones)
             {
 
@@ -313,6 +323,15 @@ namespace C3D
         private void tree(clasesuml clase)
         {
             venta.Text = "";
+            foreach (Relaciones rel in clasesuml.Relaciones)
+            {
+
+                if (rel.clasea.Equals(clase.Nombre))
+                {
+                    venta.Text += " Importar " + rel.claseb + ".tree\n";
+                    goto siguiente;
+                }
+            }
             venta.Text += "clase " + clase.Nombre;
             foreach (Relaciones rel in clasesuml.Relaciones)
             {

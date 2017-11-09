@@ -35,13 +35,9 @@ namespace C3D
         public static int tipoex = 0;// int = 0, char = 3, string = 2, decimal = 2 , booleano = 4
         public ArrayList elementos = new ArrayList();
         public static bool biffalse = false;
-
         public static ArrayList TablaSimbolos = new ArrayList();
-
         public static TS actualc = null;
-
         public static TS actualM = null;
-
         public static ArrayList import = new ArrayList();
         public static ArrayList display = new ArrayList();
         public static ArrayList importadasgeneral = new ArrayList();
@@ -1027,6 +1023,11 @@ namespace C3D
                     }
 
                     TS nuevo = new TS(nombre, 6, 0, 0, visibilidad, 0, etiqueta, 0, 0, null);
+                    int pos = sobreescribir(nombre);
+                    if (pos > 0)
+                    {
+                        actualc.elementos.RemoveAt(pos);
+                    }
                     actualc.elementos.Add(nuevo);
                     TS ret = new TS("ret", 9, 0, 9, visibilidad, 1, "", 0, 0, null);
                     nuevo.elementos.Add(ret);
@@ -1173,6 +1174,11 @@ namespace C3D
                     {
                         nuevo.auxte = tipov;
 
+                    }
+                    int pos = sobreescribir(nombre);
+                    if (pos > 0)
+                    {
+                        actualc.elementos.RemoveAt(pos);
                     }
                     actualc.elementos.Add(nuevo);
                     TS ret = new TS("ret", 9, 0, 9, visibilidad, 1, "", 0, 0, null);
@@ -1589,7 +1595,15 @@ namespace C3D
                     }
 
                     TS nuevo = new TS(nombre, 6, 0, 0, visibilidad, 0, etiqueta, 0, 0, null);
+
+                    int pos = sobreescribir(nombre);
+                    if (pos > 0)
+                    {
+                        actualc.elementos.RemoveAt(pos);        
+                    }
                     actualc.elementos.Add(nuevo);
+                    
+
                     TS ret = new TS("ret", 0, 0, 0, visibilidad, 1, "", 0, 0, null);
                     nuevo.elementos.Add(ret);
                     nuevo.peso++;
@@ -1715,8 +1729,19 @@ namespace C3D
                     {
                         nuevo.auxte = tipof;
                     }
-                    actualc.elementos.Add(nuevo);
+                   
                     TS ret = new TS("ret", 0, 0, 0, visibilidad, 1, "", 0, 0, null);
+                    if (nuevo.tipo2 == 6)
+                    {
+                        nuevo.auxte = tipof;
+
+                    }
+                    int pos = sobreescribir(nombre);
+                    if (pos > 0)
+                    {
+                        actualc.elementos.RemoveAt(pos);
+                    }
+                    actualc.elementos.Add(nuevo);
                     nuevo.elementos.Add(ret);
                     nuevo.peso++;
                     actualM = nuevo;
@@ -5695,6 +5720,34 @@ namespace C3D
                         ret.Add(lv);
                         ret.Add(t2[1].ToString());
                         return ret;
+                    case "xor":
+                        biffalse = false;
+                        String txor = Ejecucion3d.generatemp();
+                        Ejecucion3d.cadenota += txor + "= 0;\n" ;
+                        t1 = cond(raiz.ChildNodes.ElementAt(0));
+                        String Lxor1 = Ejecucion3d.generalabel();
+                        Ejecucion3d.cadenota += t1[0].ToString()+":\n";
+                        Ejecucion3d.cadenota += txor + "=" + txor + "+ 1;\n";
+                        Ejecucion3d.cadenota += "goto "+Lxor1+";\n";
+                        Ejecucion3d.cadenota += t1[1].ToString() + ":\n";
+                        Ejecucion3d.cadenota += txor + "=" + txor + "- 1;\n";
+                        Ejecucion3d.cadenota += Lxor1 + ":\n";
+                        t2 = cond(raiz.ChildNodes.ElementAt(2));
+                        Lxor1 = Ejecucion3d.generalabel();
+                        Ejecucion3d.cadenota += t2[0].ToString() + ":\n";
+                        Ejecucion3d.cadenota += txor + "=" + txor + "+ 1;\n";
+                        Ejecucion3d.cadenota += "goto " + Lxor1 + ";\n";
+                        Ejecucion3d.cadenota += t2[1].ToString() + ":\n";
+                        Ejecucion3d.cadenota += txor + "=" + txor + "- 1;\n";
+                        Ejecucion3d.cadenota += Lxor1 + ":\n";
+                        Lxor1 = Ejecucion3d.generalabel();
+                        String Lxor2 = Ejecucion3d.generalabel();
+                        Ejecucion3d.cadenota += "if "+txor +"= 0 goto "+Lxor1+";\n";
+                        Ejecucion3d.cadenota += "goto " + Lxor2 + ";\n";
+                        ret.Add(Lxor1);
+                        ret.Add(Lxor2);
+                        return ret;
+
 
                 }
 
@@ -5754,15 +5807,22 @@ namespace C3D
 
                             t4 = "goto " + eti2 + ";\n";
                             Ejecucion3d.cadenota += t4;
+                            ret.Add(eti1);
+                            ret.Add(eti2);
                         }
                         else
                         {
+                            tipo = contrario(tipo);
                             String t4 = "iffalse " + t11 + tipo + t22 + " goto " + eti2 + ";\n";
                             Ejecucion3d.cadenota += t4;
 
+                            t4 = "goto " + eti1 + ";\n";
+                            Ejecucion3d.cadenota += t4;
+                            ret.Add(eti2);
+                            ret.Add(eti1);
+
                         }
-                        ret.Add(eti1);
-                        ret.Add(eti2);
+                      
                         return ret;
                     case "==":
                         String t111 = Expt(raiz.ChildNodes.ElementAt(0));
@@ -5776,21 +5836,28 @@ namespace C3D
 
                             t4 = "goto " + eti21 + ";\n";
                             Ejecucion3d.cadenota += t4;
+                            ret.Add(eti11);
+                            ret.Add(eti21);
                         }
                         else
                         {
-                            String t4 = "iffalse " + t111 + "=" + t221 + " goto " + eti21 + ";\n";
+                            tipo = contrario(tipo);
+                            String t4 = "iffalse " + t111 + tipo + t221 + " goto " + eti21 + ";\n";
                             Ejecucion3d.cadenota += t4;
 
+                            t4 = "goto " + eti11 + ";\n";
+                            Ejecucion3d.cadenota += t4;
+                            ret.Add(eti21);
+                            ret.Add(eti11);
+
                         }
-                        ret.Add(eti11);
-                        ret.Add(eti21);
+                        
                         return ret;
                     case "and":
                         biffalse = true;
-                        t1 = cond(raiz.ChildNodes.ElementAt(0));
+                        t1 = condt(raiz.ChildNodes.ElementAt(0));
                         Ejecucion3d.cadenota += t1[0].ToString() + ":\n";
-                        t2 = cond(raiz.ChildNodes.ElementAt(2));
+                        t2 = condt(raiz.ChildNodes.ElementAt(2));
                         String lf = t1[1].ToString() + "," + t2[1].ToString();
                         ret.Add(t2[0].ToString());
                         String[] lista1 = t2[0].ToString().Split(',');
@@ -5799,13 +5866,41 @@ namespace C3D
                         return ret;
                     case "or":
                         biffalse = false;
-                        t1 = cond(raiz.ChildNodes.ElementAt(0));
+                        t1 = condt(raiz.ChildNodes.ElementAt(0));
                         Ejecucion3d.cadenota += t1[1].ToString() + ":\n";
-                        t2 = cond(raiz.ChildNodes.ElementAt(2));
+                        t2 = condt(raiz.ChildNodes.ElementAt(2));
                         String lv = t1[0].ToString() + "," + t2[0].ToString();
                         ret.Add(lv);
                         ret.Add(t2[1].ToString());
                         return ret;
+                    case "xor":
+                        biffalse = false;
+                        String txor = Ejecucion3d.generatemp();
+                        Ejecucion3d.cadenota += txor + "= 0;\n";
+                        t1 = condt(raiz.ChildNodes.ElementAt(0));
+                        String Lxor1 = Ejecucion3d.generalabel();
+                        Ejecucion3d.cadenota += t1[0].ToString() + ":\n";
+                        Ejecucion3d.cadenota += txor + "=" + txor + "+ 1;\n";
+                        Ejecucion3d.cadenota += "goto " + Lxor1 + ";\n";
+                        Ejecucion3d.cadenota += t1[1].ToString() + ":\n";
+                        Ejecucion3d.cadenota += txor + "=" + txor + "- 1;\n";
+                        Ejecucion3d.cadenota += Lxor1 + ":\n";
+                        t2 = condt(raiz.ChildNodes.ElementAt(2));
+                        Lxor1 = Ejecucion3d.generalabel();
+                        Ejecucion3d.cadenota += t2[0].ToString() + ":\n";
+                        Ejecucion3d.cadenota += txor + "=" + txor + "+ 1;\n";
+                        Ejecucion3d.cadenota += "goto " + Lxor1 + ";\n";
+                        Ejecucion3d.cadenota += t2[1].ToString() + ":\n";
+                        Ejecucion3d.cadenota += txor + "=" + txor + "- 1;\n";
+                        Ejecucion3d.cadenota += Lxor1 + ":\n";
+                        Lxor1 = Ejecucion3d.generalabel();
+                        String Lxor2 = Ejecucion3d.generalabel();
+                        Ejecucion3d.cadenota += "if " + txor + "= 0 goto " + Lxor1 + ";\n";
+                        Ejecucion3d.cadenota += "goto " + Lxor2 + ";\n";
+                        ret.Add(Lxor1);
+                        ret.Add(Lxor2);
+                        return ret;
+
 
                 }
 
@@ -7566,6 +7661,20 @@ namespace C3D
 
 
             return ret;
+        }
+
+        public int sobreescribir(String nombre)
+        {
+            int pos = 0;
+            foreach(TS hijo in actualc.elementos)
+            {
+                if (hijo.nombre.Equals(nombre) && hijo.Tipo > 5)
+                {
+                    return pos;
+                }
+                pos++;
+            }
+            return -1;
         }
     }
 

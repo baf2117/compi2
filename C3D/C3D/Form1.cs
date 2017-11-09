@@ -47,6 +47,7 @@ namespace C3D
                 Ejecucion3d.Pila.Clear();
                 Ejecucion3d.stack.Clear();
                 Ejecucion3d.heap.Clear();
+                Ejecucion3d.linea.Clear();
                 Ejecucion3d.pm = 0;
                 Ejecucion3d.am = 0;
                 for (int i = 0; i < 100; i++) {

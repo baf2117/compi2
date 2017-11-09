@@ -115,9 +115,6 @@ namespace C3D
                 //optimizar(raiz);
                 linea = linealizar(raiz);
                 ejecutar(linealizar(raiz));
-                
-               
-
             }
            
             
