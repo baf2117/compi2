@@ -18,6 +18,7 @@ namespace C3D
     public partial class Form1 : Form
     {   public static int index = 6;
         public static bool bandera = false;
+        public static String usuario = "";
         TextStyle BlueStyle = new TextStyle(Brushes.Blue, null, FontStyle.Regular);        
         TextStyle GrayStyle = new TextStyle(Brushes.Gray, null, FontStyle.Regular);
         TextStyle OrangeStyle = new TextStyle(Brushes.Orange, null, FontStyle.Italic);
@@ -439,6 +440,57 @@ namespace C3D
         {
             ReporteG nuevo = new ReporteG();
             nuevo.Show();
+        }
+
+        private void codigoCompartidoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void ingresarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!usuario.Equals(""))
+            {
+                MessageBox.Show("Ya existe una sesión iniciada");
+                return;
+            }
+            else
+            {
+                Ingreso nuevo = new Ingreso();
+
+                nuevo.Show();
+            }
+        }
+
+        private void cerrarSesiónToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (usuario.Equals(""))
+            {
+                MessageBox.Show("No existe una sesión iniciada");
+                return;
+            }
+            else
+            {
+                MessageBox.Show("Sesión finalizada");
+                usuario = "";
+                return;
+            }
+
+        }
+
+        private void agregarClaseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (usuario.Equals(""))
+            {
+                MessageBox.Show("No existe una sesión iniciada");
+                return;
+            }
+            else
+            {
+                Subir nuevo = new Subir();
+                nuevo.Show();
+                
+            }
         }
     }
 }

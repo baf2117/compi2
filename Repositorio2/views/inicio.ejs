@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Repositorio</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--[if lte IE 8]><script src="javascripts/ie/html5shiv.js"></script><![endif]-->
+    <link rel="stylesheet" href="stylesheets/main.css" />
+    <!--[if lte IE 9]><link rel="stylesheet" href="stylesheets/ie9.css" /><![endif]-->
+    <!--[if lte IE 8]><link rel="stylesheet" href="stylesheets/ie8.css" /><![endif]-->
+</head>
+
+<body class="landing" style="background:  #1c1d26;">
+<header id="header">
+    <nav id="nav">
+        <ul>
+            <li><a href="/clases" class="button">Home</a></li>
+            <li><a href="/" class="button">Log out</a></li>
+        </ul>
+    </nav>
+</header>
+<br/>
+<br/>
+   <div style="display: flex;justify-content: center;align-items: center;">
+       <div style="width: 800px">
+        <table>
+        <%
+        Object.keys(contenido).forEach(function(key){ %>
+        <tr>
+            <td><a href="/vista?id=<%=contenido[key].nombre%>"><%=contenido[key].nombre%></a></td>
+            <td> <%=contenido[key].usuario%></td>
+            <td> <%=contenido[key].fecha%></td>
+            <td> http://localhost:3000/mynube/<%=contenido[key].nombre%></td>
+        </tr>
+        <%
+        });
+        %>
+        </table>
+       </div>
+   </div>
+</body>
+</html>

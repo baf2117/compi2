@@ -102,6 +102,12 @@
     <Compile Include="Guardar.Designer.cs">
       <DependentUpon>Guardar.cs</DependentUpon>
     </Compile>
+    <Compile Include="Ingreso.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ingreso.Designer.cs">
+      <DependentUpon>Ingreso.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Relaciones.cs" />
@@ -112,6 +118,12 @@
       <DependentUpon>ReporteG.cs</DependentUpon>
     </Compile>
     <Compile Include="Sintactico1.cs" />
+    <Compile Include="Subir.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Subir.Designer.cs">
+      <DependentUpon>Subir.cs</DependentUpon>
+    </Compile>
     <Compile Include="TS.cs" />
     <Compile Include="UML.cs">
       <SubType>Form</SubType>
@@ -137,6 +149,9 @@
     <EmbeddedResource Include="Guardar.resx">
       <DependentUpon>Guardar.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Ingreso.resx">
+      <DependentUpon>Ingreso.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -149,6 +164,9 @@
     </Compile>
     <EmbeddedResource Include="ReporteG.resx">
       <DependentUpon>ReporteG.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Subir.resx">
+      <DependentUpon>Subir.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UML.resx">
       <DependentUpon>UML.cs</DependentUpon>

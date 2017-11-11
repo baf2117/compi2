@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Repositorio</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--[if lte IE 8]><script src="javascripts/ie/html5shiv.js"></script><![endif]-->
+    <link rel="stylesheet" href="stylesheets/main.css" />
+    <!--[if lte IE 9]><link rel="stylesheet" href="stylesheets/ie9.css" /><![endif]-->
+    <!--[if lte IE 8]><link rel="stylesheet" href="stylesheets/ie8.css" /><![endif]-->
+</head>
+<body class="landing" style="background:  #1c1d26;">
+<header id="header">
+    <nav id="nav">
+        <ul>
+            <li><a href="/clases" class="button">Home</a></li>
+            <li><a href="/" class="button">Log out</a></li>
+        </ul>
+    </nav>
+</header>
+<br/>
+<br/>
+<div style="display: flex;justify-content: center;align-items: center">
+
+    <div style="width: 800px;color:#eeeeee">
+
+            <%
+            Object.keys(contenido).forEach(function(key){ %>
+
+                <h3>Nombre: </h3><p><%=contenido[key].nombre%></p>
+                <h3>Usuario: </h3><p> <%=contenido[key].usuario%></p>
+                <h3>Creacion: </h3><p> <%=contenido[key].fecha%></p>
+                <h3>Direccion: </h3><p> http://localhost:3000/mynube/<%=contenido[key].nombre%></p>
+                <h3>Contenido: </h3>
+                <textarea><%=contenido[key].conte%></textarea>
+                <h3>Descripcion: </h3>
+                <textarea><%=contenido[key].descripcion%></textarea>
+
+            <%
+            });
+            %>
+
+    </div>
+</div>
+</body>
+</html>
