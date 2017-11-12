@@ -123,6 +123,7 @@ namespace C3D
             CFUNCIONES = new NonTerminal("CFUNCIONES"),
             DEC = new NonTerminal("DEC"),
             DEC2 = new NonTerminal("DEC2"),
+            DEC4 = new NonTerminal("DEC4"),
             DECV = new NonTerminal("DECV"),
             DECV1 = new NonTerminal("DECV1"),
             DEC3 = new NonTerminal("DEC3"),
@@ -235,7 +236,7 @@ namespace C3D
 
             LSENTENCIAS.Rule = MakeStarRule(LSENTENCIAS,SENTENCIA);
 
-            SENTENCIA.Rule = DEC | ATRIBUTO + Eos | ASIGNACION | INSTANCIA|SELF|CICLOS|SALIR|CONTINUAR| NATIVAS + Eos|RET |MM + Eos;
+            SENTENCIA.Rule = DEC | ATRIBUTO + Eos | ASIGNACION |SELF|CICLOS|SALIR|CONTINUAR| NATIVAS + Eos|RET |MM + Eos;
 
             SALIR.Rule = salir + Eos;
 
@@ -247,7 +248,7 @@ namespace C3D
 
             RET.Rule = retornar + E + Eos;
 
-            INSTANCIA.Rule = id + id + igual + nuevo + id + corch1 + LE + corch2 + Eos|id + id + Eos;
+            INSTANCIA.Rule =  nuevo + id + corch1 + LE + corch2;
 
             ASIGNACION.Rule = ATRIBUTO + ASG + Eos ;
 
@@ -257,9 +258,9 @@ namespace C3D
 
             ATRIBUTOS.Rule = id | id + corch1 + EA + corch2 | id + LVEC;
 
-            EA.Rule = MakePlusRule(EA,ToTerm("."),E)|Empty;
+            EA.Rule = MakePlusRule(EA,ToTerm(","),E)|Empty;
 
-            ASG.Rule = igual + E | igual + nuevo + id + corch1 + LE + corch2;
+            ASG.Rule = igual + E | igual + INSTANCIA;
                      
             CICLOS.Rule = IF|ELEGIR|PARAF | MIENTRAS | HACER |REPETIR | LOOP;
 
@@ -303,7 +304,9 @@ namespace C3D
 
             DEC2.Rule = LID | id + LVEC;
 
-            DEC3.Rule = ASG | Empty;
+            DEC3.Rule = igual +DEC4 | Empty;
+
+            DEC4.Rule = E | INSTANCIA;
 
             LVEC1.Rule = corch1 + E + corch2;
 

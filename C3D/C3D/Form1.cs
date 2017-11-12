@@ -62,6 +62,15 @@ namespace C3D
                     nuevo.valor = "";
                     Ejecucion3d.heap.AddLast(nuevo);
                 }
+                TS.TablaSimbolos.Clear();
+                TS.errore = "";
+                TS.tipoex = 0;
+                TS.biffalse = false;
+                TS.actualc = null;
+                TS.actualM = null;
+                TS.import.Clear();
+                TS.importadasgeneral.Clear();
+                TS.display.Clear();
                 Sintactico1.analizarolc(contenido);
                 Ejecucion3d.escribir3d();
                 Ejecucion3d eje = new Ejecucion3d();
