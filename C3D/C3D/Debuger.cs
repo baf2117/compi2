@@ -25,7 +25,9 @@ namespace C3D
         TextStyle PurpleStyle = new TextStyle(Brushes.Purple, null, FontStyle.Italic);
         Boolean banderaret = false;
         Boolean banderalinea = false;
+        Boolean banderaeje = false;
         Boolean fin = false;
+        int pos = 0;
         int linea;
         
 
@@ -57,21 +59,21 @@ namespace C3D
           CSharpSyntaxHighlight(e);
         }
 
-        public void ejecutardeb()
+        public  void ejecutardeb()
         {
 
-            
+
             Ejecucion3d ejec = new Ejecucion3d();
             String nombre = raiz.ElementAt(0).Term.Name;
-            int pos = 0;
+            pos = 0;
             ParseTreeNode accion = raiz.ElementAt(pos);
 
             while (!nombre.Equals("fin"))
             {
-                
+
                 switch (nombre)
                 {
-                    
+
                     case "ASIGNACIONT":
                         ejec.Asignartempo(accion);
                         pos++;
@@ -81,7 +83,7 @@ namespace C3D
                         pos++;
                         break;
                     case "ASIGNASP":
-                       ejec.asignasp(accion);
+                        ejec.asignasp(accion);
                         pos++;
                         break;
                     case "IF":
@@ -91,7 +93,7 @@ namespace C3D
                         pos = ejec.IFFA(accion, pos);
                         break;
                     case "ASIGNASEL2":
-                   //     ejec.asignaselfp2(accion);
+                        //     ejec.asignaselfp2(accion);
                         pos++;
                         break;
                     case "ASIGNASEL1":
@@ -99,7 +101,7 @@ namespace C3D
                         pos++;
                         break;
                     case "ASIGNADS":
-                    //    ejec.asignads(accion);
+                        //    ejec.asignads(accion);
                         pos++;
                         break;
                     case "ASIGNASTACK":
@@ -128,35 +130,49 @@ namespace C3D
                         pos = ejec.regreso();
                         banderaret = false;
                         break;
-                    
+
                     default:
                         pos++;
                         break;
 
 
                 }
-                if(pos == raiz.Count)
+                if (pos == raiz.Count)
                 {
                     fin = true;
                     goto fin;
-                    
+
                 }
                 accion = raiz.ElementAt(pos);
                 nombre = accion.Term.Name;
-                Range rango = new Range(consola,pos);
+                Range rango = new Range(consola, pos);
                 consola.Selection = rango;
                 consola.SelectionColor = System.Drawing.Color.Black;
-                if (banderalinea&&linea == pos)
+                if (banderalinea && linea == pos)
                 {
                     banderalinea = false;
 
                 }
+                if (banderaeje && linea == pos)
+                {
+                    banderaeje = false;
+                    debug.Resume();
+                }
 
-                if (!banderaret&&!banderalinea)
+                if (banderaeje)
+                {
+                    Thread.Sleep(1000);
+                    dibujarStack();
+                    dibujarHeap();
+                    dibujarPila();
+                }
+
+
+                if (!banderaret && !banderalinea && !banderaeje)
                 {
                     debug.Suspend();
                 }
-                
+
 
             }
             fin:;
@@ -347,24 +363,27 @@ namespace C3D
 
         public void dibujarStack()
         {
-
+            String heaps = "";
+            try
+            {
             textBox1.Text = Ejecucion3d.sp+"";
             textBox2.Text = Ejecucion3d.hp + "";
             textBox3.Text = Ejecucion3d.selfp + "";
 
 
-            String heaps = "";
-            try
-            {
+            
+           
                 foreach (Ejecucion3d pilas in Ejecucion3d.stack)
                 {
                     heaps += pilas.valor + "\r\n";
                 }
-            }catch(Exception e)
+                Stack.Text = heaps;
+            }
+            catch(Exception e)
             {
 
             }
-            Stack.Text = heaps;
+           
         }
 
         public void dibujarHeap()
@@ -378,11 +397,13 @@ namespace C3D
                     heaps += pilas.valor + "\r\n";
 
                 }
-            }catch(Exception e)
+                Heap.Text = heaps;
+            }
+            catch(Exception e)
             {
 
             }
-            Heap.Text = heaps;
+            
         }
      
         public void dibujarPila()
@@ -393,13 +414,57 @@ namespace C3D
                 foreach (Ejecucion3d pilas in Ejecucion3d.Pila)
                 {
                     pilac += pilas.nombre + "   |   " + pilas.valor + "\r\n";
+
                 }
-            }catch(Exception e)
+                Pila.Text = pilac;
+            }
+            catch(Exception e)
             {
 
             }
-            Pila.Text = pilac;
+            
         }
-     
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            if (!fin)
+            {
+                banderaeje = true;
+                if (lineas.Text.Equals(""))
+                {
+                    linea = raiz.Count();
+                }
+                else
+                {
+                    linea = Convert.ToInt32(lineas.Text) - 1;
+                }
+                debug.Resume();
+                dibujarStack();
+                dibujarHeap();
+                dibujarPila();
+            }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            banderaeje = false;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (!fin)
+            {
+                banderalinea = true;
+                linea = pos + 1;
+                debug.Resume();
+                dibujarStack();
+                dibujarHeap();
+                dibujarPila();
+            }
+        }
+       private async Task PutTaskDelay()
+        {
+            await Task.Delay(1000);
+        }
     }
 }

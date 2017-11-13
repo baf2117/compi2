@@ -23,3 +23,4 @@ C:\Users\Brayan\Desktop\C3D\C3D\obj\Debug\C3D.Debuger.resources
 C:\Users\Brayan\Desktop\C3D\C3D\obj\Debug\C3D.ReporteG.resources
 C:\Users\Brayan\Desktop\C3D\C3D\obj\Debug\C3D.Ingreso.resources
 C:\Users\Brayan\Desktop\C3D\C3D\obj\Debug\C3D.Subir.resources
+C:\Users\Brayan\Desktop\C3D\C3D\obj\Debug\C3D.optimizar1.resources

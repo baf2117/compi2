@@ -39,6 +39,7 @@
             this.codigoCompartidoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ingresarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cerrarSesiónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.agregarClaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.ventana = new FastColoredTextBoxNS.FastColoredTextBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -57,6 +58,7 @@
             this.Directorios = new System.Windows.Forms.TreeView();
             this.imageList2 = new System.Windows.Forms.ImageList(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.optimizarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.debug = new System.Windows.Forms.Button();
             this.Abrir = new System.Windows.Forms.Button();
             this.CarpetaA = new System.Windows.Forms.Button();
@@ -65,7 +67,6 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.Ejecutar = new System.Windows.Forms.Button();
-            this.agregarClaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ventana)).BeginInit();
@@ -89,7 +90,8 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.reportesToolStripMenuItem,
             this.uMLToolStripMenuItem,
-            this.codigoCompartidoToolStripMenuItem});
+            this.codigoCompartidoToolStripMenuItem,
+            this.optimizarToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(994, 24);
@@ -146,16 +148,23 @@
             // ingresarToolStripMenuItem
             // 
             this.ingresarToolStripMenuItem.Name = "ingresarToolStripMenuItem";
-            this.ingresarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.ingresarToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.ingresarToolStripMenuItem.Text = "Ingresar";
             this.ingresarToolStripMenuItem.Click += new System.EventHandler(this.ingresarToolStripMenuItem_Click);
             // 
             // cerrarSesiónToolStripMenuItem
             // 
             this.cerrarSesiónToolStripMenuItem.Name = "cerrarSesiónToolStripMenuItem";
-            this.cerrarSesiónToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.cerrarSesiónToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.cerrarSesiónToolStripMenuItem.Text = "Cerrar Sesión";
             this.cerrarSesiónToolStripMenuItem.Click += new System.EventHandler(this.cerrarSesiónToolStripMenuItem_Click);
+            // 
+            // agregarClaseToolStripMenuItem
+            // 
+            this.agregarClaseToolStripMenuItem.Name = "agregarClaseToolStripMenuItem";
+            this.agregarClaseToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.agregarClaseToolStripMenuItem.Text = "Agregar Clase";
+            this.agregarClaseToolStripMenuItem.Click += new System.EventHandler(this.agregarClaseToolStripMenuItem_Click);
             // 
             // tabPage1
             // 
@@ -187,7 +196,6 @@
             this.ventana.CharWidth = 8;
             this.ventana.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.ventana.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
-            this.ventana.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.ventana.IsReplaceMode = false;
             this.ventana.Location = new System.Drawing.Point(-4, 0);
             this.ventana.Name = "ventana";
@@ -253,7 +261,6 @@
             this.Consola.CharWidth = 8;
             this.Consola.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.Consola.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
-            this.Consola.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.Consola.IsReplaceMode = false;
             this.Consola.Location = new System.Drawing.Point(0, 0);
             this.Consola.Name = "Consola";
@@ -291,13 +298,12 @@
         '\"',
         '\'',
         '\''};
-            this.Errores.AutoScrollMinSize = new System.Drawing.Size(2, 14);
+            this.Errores.AutoScrollMinSize = new System.Drawing.Size(27, 14);
             this.Errores.BackBrush = null;
             this.Errores.CharHeight = 14;
             this.Errores.CharWidth = 8;
             this.Errores.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.Errores.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
-            this.Errores.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.Errores.IsReplaceMode = false;
             this.Errores.Location = new System.Drawing.Point(-4, 0);
             this.Errores.Name = "Errores";
@@ -333,13 +339,12 @@
         '\"',
         '\'',
         '\''};
-            this.procesos.AutoScrollMinSize = new System.Drawing.Size(2, 14);
+            this.procesos.AutoScrollMinSize = new System.Drawing.Size(27, 14);
             this.procesos.BackBrush = null;
             this.procesos.CharHeight = 14;
             this.procesos.CharWidth = 8;
             this.procesos.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.procesos.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
-            this.procesos.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.procesos.IsReplaceMode = false;
             this.procesos.Location = new System.Drawing.Point(-4, 0);
             this.procesos.Name = "procesos";
@@ -375,13 +380,12 @@
         '\"',
         '\'',
         '\''};
-            this.tresd.AutoScrollMinSize = new System.Drawing.Size(2, 14);
+            this.tresd.AutoScrollMinSize = new System.Drawing.Size(27, 14);
             this.tresd.BackBrush = null;
             this.tresd.CharHeight = 14;
             this.tresd.CharWidth = 8;
             this.tresd.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tresd.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
-            this.tresd.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.tresd.IsReplaceMode = false;
             this.tresd.Location = new System.Drawing.Point(0, 0);
             this.tresd.Name = "tresd";
@@ -417,13 +421,12 @@
         '\"',
         '\'',
         '\''};
-            this.optimizado.AutoScrollMinSize = new System.Drawing.Size(2, 14);
+            this.optimizado.AutoScrollMinSize = new System.Drawing.Size(27, 14);
             this.optimizado.BackBrush = null;
             this.optimizado.CharHeight = 14;
             this.optimizado.CharWidth = 8;
             this.optimizado.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.optimizado.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
-            this.optimizado.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.optimizado.IsReplaceMode = false;
             this.optimizado.Location = new System.Drawing.Point(0, 0);
             this.optimizado.Name = "optimizado";
@@ -448,13 +451,12 @@
         '\"',
         '\'',
         '\''};
-            this.fastColoredTextBox2.AutoScrollMinSize = new System.Drawing.Size(2, 14);
+            this.fastColoredTextBox2.AutoScrollMinSize = new System.Drawing.Size(27, 14);
             this.fastColoredTextBox2.BackBrush = null;
             this.fastColoredTextBox2.CharHeight = 14;
             this.fastColoredTextBox2.CharWidth = 8;
             this.fastColoredTextBox2.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.fastColoredTextBox2.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
-            this.fastColoredTextBox2.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.fastColoredTextBox2.IsReplaceMode = false;
             this.fastColoredTextBox2.Location = new System.Drawing.Point(0, 0);
             this.fastColoredTextBox2.Name = "fastColoredTextBox2";
@@ -492,6 +494,13 @@
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // optimizarToolStripMenuItem
+            // 
+            this.optimizarToolStripMenuItem.Name = "optimizarToolStripMenuItem";
+            this.optimizarToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
+            this.optimizarToolStripMenuItem.Text = "Optimizar";
+            this.optimizarToolStripMenuItem.Click += new System.EventHandler(this.optimizarToolStripMenuItem_Click);
             // 
             // debug
             // 
@@ -582,13 +591,6 @@
             this.Ejecutar.UseVisualStyleBackColor = true;
             this.Ejecutar.Click += new System.EventHandler(this.Ejecutar_Click);
             // 
-            // agregarClaseToolStripMenuItem
-            // 
-            this.agregarClaseToolStripMenuItem.Name = "agregarClaseToolStripMenuItem";
-            this.agregarClaseToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.agregarClaseToolStripMenuItem.Text = "Agregar Clase";
-            this.agregarClaseToolStripMenuItem.Click += new System.EventHandler(this.agregarClaseToolStripMenuItem_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -669,6 +671,7 @@
         private System.Windows.Forms.ToolStripMenuItem ingresarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cerrarSesiónToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem agregarClaseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem optimizarToolStripMenuItem;
     }
 }
 

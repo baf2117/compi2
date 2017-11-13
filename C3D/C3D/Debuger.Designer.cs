@@ -49,6 +49,8 @@
             this.Pila = new System.Windows.Forms.TextBox();
             this.Stack = new FastColoredTextBoxNS.FastColoredTextBox();
             this.Heap = new FastColoredTextBoxNS.FastColoredTextBox();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.consola)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Stack)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Heap)).BeginInit();
@@ -73,6 +75,7 @@
             this.consola.CharWidth = 8;
             this.consola.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.consola.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
+            this.consola.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.consola.IsReplaceMode = false;
             this.consola.Location = new System.Drawing.Point(25, 84);
             this.consola.Name = "consola";
@@ -89,7 +92,7 @@
             // 
             this.Ejecutar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Ejecutar.BackgroundImage")));
             this.Ejecutar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.Ejecutar.Location = new System.Drawing.Point(25, 12);
+            this.Ejecutar.Location = new System.Drawing.Point(168, 12);
             this.Ejecutar.Name = "Ejecutar";
             this.Ejecutar.Size = new System.Drawing.Size(57, 54);
             this.Ejecutar.TabIndex = 2;
@@ -100,7 +103,7 @@
             // 
             this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
             this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button1.Location = new System.Drawing.Point(103, 12);
+            this.button1.Location = new System.Drawing.Point(231, 12);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(57, 54);
             this.button1.TabIndex = 3;
@@ -111,17 +114,18 @@
             // 
             this.button2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button2.BackgroundImage")));
             this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button2.Location = new System.Drawing.Point(181, 12);
+            this.button2.Location = new System.Drawing.Point(294, 12);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(57, 54);
             this.button2.TabIndex = 4;
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button3
             // 
             this.button3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button3.BackgroundImage")));
             this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button3.Location = new System.Drawing.Point(244, 12);
+            this.button3.Location = new System.Drawing.Point(357, 12);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(57, 54);
             this.button3.TabIndex = 5;
@@ -150,7 +154,7 @@
             // lineas
             // 
             this.lineas.FormattingEnabled = true;
-            this.lineas.Location = new System.Drawing.Point(307, 45);
+            this.lineas.Location = new System.Drawing.Point(420, 45);
             this.lineas.Name = "lineas";
             this.lineas.Size = new System.Drawing.Size(121, 21);
             this.lineas.TabIndex = 7;
@@ -237,7 +241,7 @@
             this.Pila.Multiline = true;
             this.Pila.Name = "Pila";
             this.Pila.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.Pila.Size = new System.Drawing.Size(116, 220);
+            this.Pila.Size = new System.Drawing.Size(98, 220);
             this.Pila.TabIndex = 20;
             // 
             // Stack
@@ -259,7 +263,6 @@
             this.Stack.CharWidth = 8;
             this.Stack.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.Stack.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
-            this.Stack.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.Stack.IsReplaceMode = false;
             this.Stack.Location = new System.Drawing.Point(539, 85);
             this.Stack.Name = "Stack";
@@ -289,7 +292,6 @@
             this.Heap.CharWidth = 8;
             this.Heap.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.Heap.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
-            this.Heap.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.Heap.IsReplaceMode = false;
             this.Heap.Location = new System.Drawing.Point(657, 84);
             this.Heap.Name = "Heap";
@@ -300,11 +302,35 @@
             this.Heap.TabIndex = 23;
             this.Heap.Zoom = 100;
             // 
+            // button4
+            // 
+            this.button4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button4.BackgroundImage")));
+            this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button4.Location = new System.Drawing.Point(42, 12);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(57, 54);
+            this.button4.TabIndex = 24;
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // button5
+            // 
+            this.button5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button5.BackgroundImage")));
+            this.button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button5.Location = new System.Drawing.Point(105, 12);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(57, 54);
+            this.button5.TabIndex = 25;
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
             // Debuger
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(888, 502);
+            this.Controls.Add(this.button5);
+            this.Controls.Add(this.button4);
             this.Controls.Add(this.Heap);
             this.Controls.Add(this.Stack);
             this.Controls.Add(this.Pila);
@@ -355,5 +381,7 @@
         private System.Windows.Forms.TextBox Pila;
         private FastColoredTextBoxNS.FastColoredTextBox Stack;
         private FastColoredTextBoxNS.FastColoredTextBox Heap;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button5;
     }
 }

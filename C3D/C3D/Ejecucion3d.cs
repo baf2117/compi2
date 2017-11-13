@@ -25,6 +25,7 @@ namespace C3D
         public static int pl = 0;
         public String nombre = "";
         public String valor = "";
+        public static String cadenaopti = "";
         public static LinkedList<Ejecucion3d> stack = new LinkedList<Ejecucion3d>();
         public static LinkedList<Ejecucion3d> heap = new LinkedList<Ejecucion3d>();
         public static LinkedList<Ejecucion3d> ds = new LinkedList<Ejecucion3d>();
@@ -116,8 +117,24 @@ namespace C3D
                 linea = linealizar(raiz);
                 ejecutar(linealizar(raiz));
             }
-           
+
             
+        }
+
+        public ParseTreeNode analizar3D1(String cadena)
+        {
+            _3DG gramatica = new _3DG();
+            LanguageData lenguaje = new LanguageData(gramatica);
+            Parser parse = new Parser(lenguaje);
+            ParseTree arbol = parse.Parse(cadena);
+            ParseTreeNode raiz = arbol.Root;
+
+            if (raiz != null)
+            {
+                raiz = reparar(raiz);               
+            }
+
+            return raiz;
         }
 
         public LinkedList<ParseTreeNode> linealizar(ParseTreeNode raiz)
@@ -985,16 +1002,29 @@ namespace C3D
             }
             lista = optimizar2(lista);
             lista = regla22(lista);
+            lista = optimizar2(lista);
+            lista = regla22(lista);
+            lista = optimizar2(lista);
+            lista = regla22(lista);
+            lista = optimizar2(lista);
+            lista = regla22(lista);
+            lista = optimizar2(lista);
+            lista = regla22(lista);
+            lista = optimizar2(lista);
+            lista = regla22(lista);
             linea = lista;
             //ejecutar(lista);
             String candenota2 = cadenaop(lista);
             Program.ventana.optimizado.Text = candenota2;
+            cadenaopti = candenota2;
             
 
         }
 
         public LinkedList<ParseTreeNode>  optimizar2(LinkedList<ParseTreeNode> raiz)
         {
+            inicio:
+                
 
             LinkedList<ParseTreeNode> lista = new LinkedList<ParseTreeNode>();
             ParseTreeNode aux,aux2,aux3,hijo;
@@ -1042,7 +1072,7 @@ namespace C3D
 
                                             goto label;
                                         }
-                                        if (aux2.ChildNodes.ElementAt(2).ChildNodes.Count == 1 && !aux2.Term.Name.Equals("GOTO")&& aux2.Term.Name.Equals("ETIQUETA")&& aux2.Term.Name.Equals("IF"))
+                                        if (aux2.ChildNodes.ElementAt(2).ChildNodes.Count == 1 && !aux2.Term.Name.Equals("GOTO")&& !aux2.Term.Name.Equals("ETIQUETA")&& !aux2.Term.Name.Equals("IF"))
                                         {
                                             val22 = aux2.ChildNodes.ElementAt(0).Token.Text;
                                             val11 = aux2.ChildNodes.ElementAt(2).ChildNodes.ElementAt(0).ChildNodes.ElementAt(0).Token.Text;
@@ -1050,6 +1080,7 @@ namespace C3D
                                             {
                                                 agregar = false;
                                                 raiz.Remove(aux2);
+                                                goto inicio;
 
                                             }
 
@@ -1109,7 +1140,7 @@ namespace C3D
                                             goto label2;
                                         }
 
-                                        if (aux2.ChildNodes.ElementAt(2).ChildNodes.Count == 1 && !aux2.Term.Name.Equals("GOTO") && aux2.Term.Name.Equals("ETIQUETA") && aux2.Term.Name.Equals("IF"))
+                                        if (aux2.ChildNodes.ElementAt(2).ChildNodes.Count == 1 && !aux2.Term.Name.Equals("GOTO") && !aux2.Term.Name.Equals("ETIQUETA") && !aux2.Term.Name.Equals("IF"))
                                         {
                                             val22 = aux2.ChildNodes.ElementAt(0).Token.Text;
                                             val11 = aux2.ChildNodes.ElementAt(2).ChildNodes.ElementAt(0).ChildNodes.ElementAt(0).Token.Text;
@@ -1117,6 +1148,7 @@ namespace C3D
                                             {
                                                 agregar = false;
                                                 raiz.Remove(aux2);
+                                                goto inicio;
 
                                             }
 
@@ -1173,7 +1205,7 @@ namespace C3D
                                         {
                                             goto label3;
                                         }
-                                        if (aux2.ChildNodes.ElementAt(2).ChildNodes.Count == 1 && !aux2.Term.Name.Equals("GOTO") && aux2.Term.Name.Equals("ETIQUETA") && aux2.Term.Name.Equals("IF"))
+                                        if (aux2.ChildNodes.ElementAt(2).ChildNodes.Count == 1 && !aux2.Term.Name.Equals("GOTO") && !aux2.Term.Name.Equals("ETIQUETA") && !aux2.Term.Name.Equals("IF"))
                                         {
                                             val22 = aux2.ChildNodes.ElementAt(0).Token.Text;
                                             val11 = aux2.ChildNodes.ElementAt(2).ChildNodes.ElementAt(0).ChildNodes.ElementAt(0).Token.Text;
@@ -1181,6 +1213,7 @@ namespace C3D
                                             {
                                                 agregar = false;
                                                 raiz.Remove(aux2);
+                                                goto inicio;
 
                                             }
 
@@ -1238,7 +1271,7 @@ namespace C3D
 
                                             goto label4;
                                         }
-                                        if (aux2.ChildNodes.ElementAt(2).ChildNodes.Count == 1 && !aux2.Term.Name.Equals("GOTO") && aux2.Term.Name.Equals("ETIQUETA") && aux2.Term.Name.Equals("IF"))
+                                        if (aux2.ChildNodes.ElementAt(2).ChildNodes.Count == 1 && !aux2.Term.Name.Equals("GOTO") && !aux2.Term.Name.Equals("ETIQUETA") && !aux2.Term.Name.Equals("IF"))
                                         {
                                             val22 = aux2.ChildNodes.ElementAt(0).Token.Text;
                                             val11 = aux2.ChildNodes.ElementAt(2).ChildNodes.ElementAt(0).ChildNodes.ElementAt(0).Token.Text;
@@ -1246,6 +1279,7 @@ namespace C3D
                                             {
                                                 agregar = false;
                                                 raiz.Remove(aux2);
+                                                goto inicio;
 
                                             }
 
@@ -1303,7 +1337,7 @@ namespace C3D
 
                                             goto label5;
                                         }
-                                        if (aux2.ChildNodes.ElementAt(2).ChildNodes.Count == 1 && !aux2.Term.Name.Equals("GOTO") && aux2.Term.Name.Equals("ETIQUETA") && aux2.Term.Name.Equals("IF"))
+                                        if (aux2.ChildNodes.ElementAt(2).ChildNodes.Count == 1 && !aux2.Term.Name.Equals("GOTO") && !aux2.Term.Name.Equals("ETIQUETA") && !aux2.Term.Name.Equals("IF"))
                                         {
                                             val22 = aux2.ChildNodes.ElementAt(0).Token.Text;
                                             val11 = aux2.ChildNodes.ElementAt(2).ChildNodes.ElementAt(0).ChildNodes.ElementAt(0).Token.Text;
@@ -1311,6 +1345,7 @@ namespace C3D
                                             {
                                                 agregar = false;
                                                 raiz.Remove(aux2);
+                                                goto inicio;
 
                                             }
 
@@ -1483,7 +1518,7 @@ namespace C3D
             String tipo2 = "";
             foreach (ParseTreeNode hijo in raiz)
             {
-                if (hijo.Term.Name.Equals("IF"))
+                if (hijo.Term.Name.Equals("IF")|(hijo.Term.Name.Equals("GOTO")&&hijo.ChildNodes.Count==7))
                 {
                     aux = hijo.ChildNodes.ElementAt(1).ChildNodes.ElementAt(0);
                     tipo1 = aux.Term.Name;
@@ -1503,6 +1538,8 @@ namespace C3D
                             aux = hijo.ChildNodes.ElementAt(0);
                             hijo.ChildNodes.Remove(aux);
                             hijo.Term.Name = "GOTO";
+                            ParseTreeNode aux2 = raiz.ElementAt(pos + 1);
+                            raiz.Remove(aux2);
                             goto INICIO;
                         }
                         else
@@ -1715,7 +1752,11 @@ namespace C3D
                                         E.ChildNodes.RemoveAt(2);
                                         E.ChildNodes.Add(E.ChildNodes.ElementAt(0));
                                         SourceLocation sou = new SourceLocation();
-                                        Token sum = new Token(null, sou, "+", null);
+                                        Terminal ter = new Terminal("keyword");
+                                        object val2 = new object();
+                                        val2 = "+";
+                                        Token sum = new Token(ter, sou, "+",val2);
+                                        
                                         E.ChildNodes.ElementAt(1).Token = sum;
                                         
                                     }
@@ -1728,7 +1769,10 @@ namespace C3D
                                             ParseTreeNode aux2 = E.ChildNodes.ElementAt(0);
                                             E.ChildNodes.RemoveAt(0);
                                             SourceLocation sou = new SourceLocation();
-                                            Token sum = new Token(null, sou, "+", null);
+                                            Terminal ter = new Terminal("keyword");
+                                            object val2 = new object();
+                                            val2 = "+";
+                                            Token sum = new Token(ter, sou, "+", val2);
                                             aux2.ChildNodes.ElementAt(1).Token = sum;
                                             E.ChildNodes.Add(aux2);
                                             E.ChildNodes.Add(E.ChildNodes.ElementAt(0));
@@ -1764,6 +1808,24 @@ namespace C3D
                         }
                     }
 
+                    break;
+                case "^":
+                    
+                        aux = E.ChildNodes.ElementAt(2).ChildNodes.ElementAt(0);
+                        if (aux.Token.Text.Equals("2"))
+                        {
+                            E.ChildNodes.RemoveAt(2);
+                            E.ChildNodes.Add(E.ChildNodes.ElementAt(0));
+                            SourceLocation sou = new SourceLocation();
+                            Terminal ter = new Terminal("keyword");
+                            object val2 = new object();
+                            val2 = "*";
+                            Token sum = new Token(ter, sou, "*", val2);
+
+                            E.ChildNodes.ElementAt(1).Token = sum;
+
+                        }
+                        
                     break;
 
 
@@ -1850,20 +1912,20 @@ namespace C3D
                         aux = hijo.ChildNodes.ElementAt(2);
                         if (aux.ChildNodes.Count == 3)
                         {
-                            ret += " " + aux.ChildNodes.ElementAt(0).ChildNodes.ElementAt(0).Token.Text;
-                            ret += " " + aux.ChildNodes.ElementAt(1).Token.Text;
-                            ret += " " + aux.ChildNodes.ElementAt(2).ChildNodes.ElementAt(0).Token.Text;
+                            ret += aux.ChildNodes.ElementAt(0).ChildNodes.ElementAt(0).Token.Text;
+                            ret += aux.ChildNodes.ElementAt(1).Token.Text;
+                            ret += aux.ChildNodes.ElementAt(2).ChildNodes.ElementAt(0).Token.Text;
 
                         }
                         else if(aux.ChildNodes.Count==1){
                             if (aux.ChildNodes.ElementAt(0).ChildNodes.Count != 4)
                             {
-                                ret += " " + aux.ChildNodes.ElementAt(0).ChildNodes.ElementAt(0).Token.Text;
+                                ret += aux.ChildNodes.ElementAt(0).ChildNodes.ElementAt(0).Token.Text;
                             }
                             else
                             {
                                 aux = aux.ChildNodes.ElementAt(0);
-                                ret += " " + aux.ChildNodes.ElementAt(0).Token.Text;
+                                ret +=aux.ChildNodes.ElementAt(0).Token.Text;
                                 ret += " [" + aux.ChildNodes.ElementAt(2).ChildNodes.ElementAt(0).Token.Text;
                                 ret += " ]";
 

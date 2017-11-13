@@ -501,6 +501,12 @@ namespace C3D
                 
             }
         }
+
+        private void optimizarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            optimizar1 nuevo = new optimizar1();
+            nuevo.Show();
+        }
     }
 }
 
