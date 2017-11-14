@@ -1858,9 +1858,9 @@ namespace C3D
             ini1 = Ejecucion3d.generalabel();
             Ejecucion3d.cadenota += deci + ":\nif t5 > t2 goto " + ini1 + ";\nt5 = t5 + t3;\ngoto " + deci + ";\n";
             deci2 = Ejecucion3d.generalabel();
-            Ejecucion3d.cadenota += ini1 + ":\nt5 = t5 - t3;\nt6 = t5 /t3;\nt6 = t6 + 48;\nheap[hp]= t6;\nhp = hp + 1;\nt2 = t2 - t5;\nif t2 <= 0 goto " + deci2 + ";\n";
+            Ejecucion3d.cadenota += ini1 + ":\nt5 = t5 - t3;\nt6 = t5 /t3;\nt6 = t6 + 48;\nheap[hp]= t6;\nhp = hp + 1;\nt2 = t2 - t5;\nif t2 < 1 goto " + deci2 + ";\n";
             Ejecucion3d.cadenota += "goto " + sal + ";\n";
-            Ejecucion3d.cadenota += label9 + ": \nheap[hp]=30;\nhp = hp + 1;\n";
+            Ejecucion3d.cadenota += label9 + ": \nheap[hp]=48;\nhp = hp + 1;\n";
             Ejecucion3d.cadenota += deci2 + ":\nheap[hp]=46;\nhp = hp +1;\nt7 = 10;\n";
             String label6 = Ejecucion3d.generalabel();
             Ejecucion3d.cadenota += label6 + ":\nt8 = 1;\nt9 = t2 * t7;\n";
@@ -1869,7 +1869,7 @@ namespace C3D
             Ejecucion3d.cadenota += label7 + ":\nif t8> t9 goto " + label8 + ";\nt8 = t8 +1;\n";
             Ejecucion3d.cadenota += "goto " + label7 + ";\n";
             Ejecucion3d.cadenota += label8 + ":\nt8 = t8-1;\nt6 = t8 +48;\nheap[hp]=t6;\nhp = hp+1;\nt9 = t8 /t7;\nt2 = t2 - t9;\nt7 = t7 * 10;\nif t2 != 0 goto " + label6 + ";\n";
-            Ejecucion3d.cadenota += "heap[hp]=30;\nhp = hp + 1;\nheap[hp]=\\0;\nhp = hp +1;\nreturn;}\n";
+            Ejecucion3d.cadenota += "heap[hp]=48;\nhp = hp + 1;\nheap[hp]=\\0;\nhp = hp +1;\nreturn;}\n";
             #endregion
 
             #region:doubletoint
@@ -3068,18 +3068,21 @@ namespace C3D
                         if (tip1 == 2 || tip2 == 2)
                         {
                             String tx;
-
+                            String ty = Ejecucion3d.generatemp();
+                            String tz = Ejecucion3d.generatemp();
+                            
                             switch (tip1)
                             {
                                 case 0:
                                     tx = Ejecucion3d.generatemp();
+
                                     Ejecucion3d.cadenota += tx + "= sp + " + actualM.peso + ";\n";
                                     Ejecucion3d.cadenota += "stack[" + tx + "]=00;\n";
                                     Ejecucion3d.cadenota += tx + "=" + tx + "+1;\n";
                                     Ejecucion3d.cadenota += "stack[" + tx + "]=" + t1 + ";\n";
                                     Ejecucion3d.cadenota += "sp = sp +" + actualM.peso + ";\n";
                                     Ejecucion3d.cadenota += "inttostr();\n";
-                                    Ejecucion3d.cadenota += t1 + "=stack[sp];\n";
+                                    Ejecucion3d.cadenota += ty + "=stack[sp];\n";
                                     Ejecucion3d.cadenota += "sp = sp -" + actualM.peso + ";\n";
                                     break;
                                 case 1:
@@ -3090,12 +3093,11 @@ namespace C3D
                                     Ejecucion3d.cadenota += "stack[" + tx + "]=" + t1 + ";\n";
                                     Ejecucion3d.cadenota += "sp = sp +" + actualM.peso + ";\n";
                                     Ejecucion3d.cadenota += "doubletostr();\n";
-                                    Ejecucion3d.cadenota += t1 + "=stack[sp];\n";
+                                    Ejecucion3d.cadenota += ty + "=stack[sp];\n";
                                     Ejecucion3d.cadenota += "sp = sp -" + actualM.peso + ";\n";
                                     break;
-
-
                                 case 2:
+                                    ty = t1;
                                     break;
                                 default:
                                     //error **************************************************************
@@ -3112,7 +3114,7 @@ namespace C3D
                                     Ejecucion3d.cadenota += "stack[" + tx + "]=" + t2 + ";\n";
                                     Ejecucion3d.cadenota += "sp = sp +" + actualM.peso + ";\n";
                                     Ejecucion3d.cadenota += "inttostr();\n";
-                                    Ejecucion3d.cadenota += t2 + "=stack[sp];\n";
+                                    Ejecucion3d.cadenota += tz + "=stack[sp];\n";
                                     Ejecucion3d.cadenota += "sp = sp -" + actualM.peso + ";\n";
                                     break;
                                 case 1:
@@ -3123,11 +3125,12 @@ namespace C3D
                                     Ejecucion3d.cadenota += "stack[" + tx + "]=" + t2 + ";\n";
                                     Ejecucion3d.cadenota += "sp = sp +" + actualM.peso + ";\n";
                                     Ejecucion3d.cadenota += "doubletostr();\n";
-                                    Ejecucion3d.cadenota += t2 + "=stack[sp];\n";
+                                    Ejecucion3d.cadenota += tz + "=stack[sp];\n";
                                     Ejecucion3d.cadenota += "sp = sp -" + actualM.peso + ";\n";
                                     break;
 
                                 case 2:
+                                    tz = t2;
                                     break;
                                 default:
                                     //error **************************************************************
@@ -3138,9 +3141,9 @@ namespace C3D
                             Ejecucion3d.cadenota += tx + "= sp + " + actualM.peso + ";\n";
                             Ejecucion3d.cadenota += "stack[" + tx + "]=00;\n";
                             Ejecucion3d.cadenota += tx + "=" + tx + "+1;\n";
-                            Ejecucion3d.cadenota += "stack[" + tx + "]=" + t1 + ";\n";
+                            Ejecucion3d.cadenota += "stack[" + tx + "]=" + ty + ";\n";
                             Ejecucion3d.cadenota += tx + "=" + tx + "+1;\n";
-                            Ejecucion3d.cadenota += "stack[" + tx + "]=" + t2 + ";\n";
+                            Ejecucion3d.cadenota += "stack[" + tx + "]=" + tz + ";\n";
                             Ejecucion3d.cadenota += "sp = sp +" + actualM.peso + ";\n";
                             Ejecucion3d.cadenota += "unir();\n";
                             Ejecucion3d.cadenota += t3 + "=stack[sp];\n";
@@ -3187,6 +3190,27 @@ namespace C3D
                             tipoex = 4;
 
                         }
+                        else if (tip1 == 3 && tip2 == 0)
+                        {
+                            Ejecucion3d.cadenota += t3 + " = " + t1 + "+" + t2 + ";\n";
+                            tipoex = 0;
+                        }
+                        else if (tip1 == 3 && tip2 == 1)
+                        {
+                            Ejecucion3d.cadenota += t3 + " = " + t1 + "+" + t2 + ";\n";
+                            tipoex = 1;
+                        }
+                        else if (tip1 == 1 && tip2 == 3)
+                        {
+                            Ejecucion3d.cadenota += t3 + " = " + t1 + "+" + t2 + ";\n";
+                            tipoex = 1;
+                        }
+                        else if (tip1 == 0 && tip2 == 3)
+                        {
+                            Ejecucion3d.cadenota += t3 + " = " + t1 + "+" + t2 + ";\n";
+                            tipoex = 0;
+
+                        }
                         else
                         {
 
@@ -3227,6 +3251,27 @@ namespace C3D
 
                             Ejecucion3d.cadenota += t3 + " = " + t1 + "-" + t2 + ";\n";
                             tipoex = 1;
+
+                        }
+                        else if (tip1 == 3 && tip2 == 0)
+                        {
+                            Ejecucion3d.cadenota += t3 + " = " + t1 + "-" + t2 + ";\n";
+                            tipoex = 0;
+                        }
+                        else if (tip1 == 3 && tip2 == 1)
+                        {
+                            Ejecucion3d.cadenota += t3 + " = " + t1 + "-" + t2 + ";\n";
+                            tipoex = 1;
+                        }
+                        else if (tip1 == 1 && tip2 == 3)
+                        {
+                            Ejecucion3d.cadenota += t3 + " = " + t1 + "-" + t2 + ";\n";
+                            tipoex = 1;
+                        }
+                        else if (tip1 == 0 && tip2 == 3)
+                        {
+                            Ejecucion3d.cadenota += t3 + " = " + t1 + "-" + t2 + ";\n";
+                            tipoex = 0;
 
                         }
                         else
@@ -3281,6 +3326,27 @@ namespace C3D
                             tipoex = 4;
 
                         }
+                        else if (tip1 == 3 && tip2 == 0)
+                        {
+                            Ejecucion3d.cadenota += t3 + " = " + t1 + "*" + t2 + ";\n";
+                            tipoex = 0;
+                        }
+                        else if (tip1 == 3 && tip2 == 1)
+                        {
+                            Ejecucion3d.cadenota += t3 + " = " + t1 + "*" + t2 + ";\n";
+                            tipoex = 1;
+                        }
+                        else if (tip1 == 1 && tip2 == 3)
+                        {
+                            Ejecucion3d.cadenota += t3 + " = " + t1 + "*" + t2 + ";\n";
+                            tipoex = 1;
+                        }
+                        else if (tip1 == 0 && tip2 == 3)
+                        {
+                            Ejecucion3d.cadenota += t3 + " = " + t1 + "*" + t2 + ";\n";
+                            tipoex = 0;
+
+                        }
                         else
                         {
 
@@ -3317,6 +3383,27 @@ namespace C3D
                         else if (tip1 == 1 || tipo2 == 1)
                         {
 
+                            Ejecucion3d.cadenota += t3 + " = " + t1 + "/" + t2 + ";\n";
+                            tipoex = 1;
+
+                        }
+                        else if (tip1 == 3 && tip2 == 0)
+                        {
+                            Ejecucion3d.cadenota += t3 + " = " + t1 + "/" + t2 + ";\n";
+                            tipoex = 1;
+                        }
+                        else if (tip1 == 3 && tip2 == 1)
+                        {
+                            Ejecucion3d.cadenota += t3 + " = " + t1 + "/" + t2 + ";\n";
+                            tipoex = 1;
+                        }
+                        else if (tip1 == 1 && tip2 == 3)
+                        {
+                            Ejecucion3d.cadenota += t3 + " = " + t1 + "/" + t2 + ";\n";
+                            tipoex = 1;
+                        }
+                        else if (tip1 == 0 && tip2 == 3)
+                        {
                             Ejecucion3d.cadenota += t3 + " = " + t1 + "/" + t2 + ";\n";
                             tipoex = 1;
 
@@ -3361,6 +3448,27 @@ namespace C3D
 
                             Ejecucion3d.cadenota += t3 + " = " + t1 + "^" + t2 + ";\n";
                             tipoex = 1;
+
+                        }
+                        else if (tip1 == 3 && tip2 == 0)
+                        {
+                            Ejecucion3d.cadenota += t3 + " = " + t1 + "^" + t2 + ";\n";
+                            tipoex = 0;
+                        }
+                        else if (tip1 == 3 && tip2 == 1)
+                        {
+                            Ejecucion3d.cadenota += t3 + " = " + t1 + "^" + t2 + ";\n";
+                            tipoex = 1;
+                        }
+                        else if (tip1 == 1 && tip2 == 3)
+                        {
+                            Ejecucion3d.cadenota += t3 + " = " + t1 + "^" + t2 + ";\n";
+                            tipoex = 1;
+                        }
+                        else if (tip1 == 0 && tip2 == 3)
+                        {
+                            Ejecucion3d.cadenota += t3 + " = " + t1 + "^" + t2 + ";\n";
+                            tipoex = 0;
 
                         }
 
@@ -3421,7 +3529,30 @@ namespace C3D
 
             if (raiz.ChildNodes.Count == 1)
             {
-                if (!raiz.ChildNodes.ElementAt(0).Term.Name.Equals("ATRIBUTO"))
+                if (raiz.ChildNodes.ElementAt(0).Term.Name.Equals("NATIVAS"))
+                {
+                    ParseTreeNode nat = raiz.ChildNodes[0];
+                    String t11 = Expt(nat.ChildNodes[2]);
+                    String tipo = nat.ChildNodes[0].Token.Text;
+                    switch (tipo)
+                    {
+                        case "parseint":
+                            String t2 = Ejecucion3d.generatemp();
+                            Ejecucion3d.cadenota +=t2+"=sp +"+actualM.peso+";\n";
+                            Ejecucion3d.cadenota += "stack[" + t2 + "]=00;\n";
+                            Ejecucion3d.cadenota += t2 + "=" + t2 + "+ 1;\n";
+                            Ejecucion3d.cadenota += "stack[" + t2 + "]="+t11+";\n";
+                            Ejecucion3d.cadenota += "sp" + "=sp +" + actualM.peso + ";\n";
+                            Ejecucion3d.cadenota += "parseint();\n";
+                            Ejecucion3d.cadenota += t2 + "=stack[sp];\n";
+                            Ejecucion3d.cadenota += "sp" + "=sp -" + actualM.peso + ";\n";
+                            return t2;
+
+
+                    }
+
+                }
+                else    if (!raiz.ChildNodes.ElementAt(0).Term.Name.Equals("ATRIBUTO"))
                 {
                     tipoex = 4;
                     ret = raiz.ChildNodes.ElementAt(0).Token.Text;
@@ -4066,6 +4197,27 @@ namespace C3D
                             tipoex = 4;
 
                         }
+                        else if (tip1 == 3 && tip2 == 0)
+                        {
+                            Ejecucion3d.cadenota += t3 + " = " + t1 + "+" + t2 + ";\n";
+                            tipoex = 0;
+                        }
+                        else if (tip1 == 3 && tip2 == 1)
+                        {
+                            Ejecucion3d.cadenota += t3 + " = " + t1 + "+" + t2 + ";\n";
+                            tipoex = 1;
+                        }
+                        else if (tip1 == 1 && tip2 == 3)
+                        {
+                            Ejecucion3d.cadenota += t3 + " = " + t1 + "+" + t2 + ";\n";
+                            tipoex = 1;
+                        }
+                        else if (tip1 == 0 && tip2 == 3)
+                        {
+                            Ejecucion3d.cadenota += t3 + " = " + t1 + "+" + t2 + ";\n";
+                            tipoex = 0;
+
+                        }
                         else
                         {
 
@@ -4106,6 +4258,27 @@ namespace C3D
 
                             Ejecucion3d.cadenota += t3 + " = " + t1 + "-" + t2 + ";\n";
                             tipoex = 1;
+
+                        }
+                        else if (tip1 == 3 && tip2 == 0)
+                        {
+                            Ejecucion3d.cadenota += t3 + " = " + t1 + "-" + t2 + ";\n";
+                            tipoex = 0;
+                        }
+                        else if (tip1 == 3 && tip2 == 1)
+                        {
+                            Ejecucion3d.cadenota += t3 + " = " + t1 + "-" + t2 + ";\n";
+                            tipoex = 1;
+                        }
+                        else if (tip1 == 1 && tip2 == 3)
+                        {
+                            Ejecucion3d.cadenota += t3 + " = " + t1 + "-" + t2 + ";\n";
+                            tipoex = 1;
+                        }
+                        else if (tip1 == 0 && tip2 == 3)
+                        {
+                            Ejecucion3d.cadenota += t3 + " = " + t1 + "-" + t2 + ";\n";
+                            tipoex = 0;
 
                         }
                         else
@@ -4160,6 +4333,27 @@ namespace C3D
                             tipoex = 4;
 
                         }
+                        else if (tip1 == 3 && tip2 == 0)
+                        {
+                            Ejecucion3d.cadenota += t3 + " = " + t1 + "*" + t2 + ";\n";
+                            tipoex = 0;
+                        }
+                        else if (tip1 == 3 && tip2 == 1)
+                        {
+                            Ejecucion3d.cadenota += t3 + " = " + t1 + "*" + t2 + ";\n";
+                            tipoex = 1;
+                        }
+                        else if (tip1 == 1 && tip2 == 3)
+                        {
+                            Ejecucion3d.cadenota += t3 + " = " + t1 + "*" + t2 + ";\n";
+                            tipoex = 1;
+                        }
+                        else if (tip1 == 0 && tip2 == 3)
+                        {
+                            Ejecucion3d.cadenota += t3 + " = " + t1 + "*" + t2 + ";\n";
+                            tipoex = 0;
+
+                        }
                         else
                         {
 
@@ -4200,7 +4394,27 @@ namespace C3D
                             tipoex = 1;
 
                         }
+                        else if (tip1 == 3 && tip2 == 0)
+                        {
+                            Ejecucion3d.cadenota += t3 + " = " + t1 + "/" + t2 + ";\n";
+                            tipoex = 1;
+                        }
+                        else if (tip1 == 3 && tip2 == 1)
+                        {
+                            Ejecucion3d.cadenota += t3 + " = " + t1 + "/" + t2 + ";\n";
+                            tipoex = 1;
+                        }
+                        else if (tip1 == 1 && tip2 == 3)
+                        {
+                            Ejecucion3d.cadenota += t3 + " = " + t1 + "/" + t2 + ";\n";
+                            tipoex = 1;
+                        }
+                        else if (tip1 == 0 && tip2 == 3)
+                        {
+                            Ejecucion3d.cadenota += t3 + " = " + t1 + "/" + t2 + ";\n";
+                            tipoex = 1;
 
+                        }
                         else
                         {
 
@@ -4242,7 +4456,27 @@ namespace C3D
                             tipoex = 1;
 
                         }
+                        else if (tip1 == 3 && tip2 == 0)
+                        {
+                            Ejecucion3d.cadenota += t3 + " = " + t1 + "^" + t2 + ";\n";
+                            tipoex = 0;
+                        }
+                        else if (tip1 == 3 && tip2 == 1)
+                        {
+                            Ejecucion3d.cadenota += t3 + " = " + t1 + "^" + t2 + ";\n";
+                            tipoex = 1;
+                        }
+                        else if (tip1 == 1 && tip2 == 3)
+                        {
+                            Ejecucion3d.cadenota += t3 + " = " + t1 + "^" + t2 + ";\n";
+                            tipoex = 1;
+                        }
+                        else if (tip1 == 0 && tip2 == 3)
+                        {
+                            Ejecucion3d.cadenota += t3 + " = " + t1 + "^" + t2 + ";\n";
+                            tipoex = 0;
 
+                        }
                         else
                         {
 
