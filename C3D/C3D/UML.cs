@@ -781,9 +781,10 @@ namespace C3D
                                     relac.Add(relb);
 
                                 }
-
-                                bloque = nodo.ChildNodes.ElementAt(3);
-
+                                if (nodo.ChildNodes.Count > 3)
+                                {
+                                    bloque = nodo.ChildNodes.ElementAt(3);
+                                }
                             }
                             else
                             {

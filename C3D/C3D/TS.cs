@@ -108,10 +108,14 @@ namespace C3D
                 String nombre;
                 String linea;
                 String path3 = path;
-                foreach (ParseTreeNode hijo in importaciones.ChildNodes)
+                if (importaciones.ChildNodes.Count == 0)
+                {
+                    goto salim;
+                }
+                foreach (ParseTreeNode hijo in importaciones.ChildNodes[0].ChildNodes)
                 {
                     contenido = "";
-                    nombre = importadastree(hijo.ChildNodes.ElementAt(0));
+                    nombre = importadastree(hijo);
                     String[] name = nombre.Split('.');
                     path = path3 + "\\" + nombre;
 
@@ -196,9 +200,10 @@ namespace C3D
 
                 }
 
-
+                
 
             }
+            salim:;
             Ejecucion3d.temporal = 1;
             import = import2;
 
@@ -1816,15 +1821,15 @@ namespace C3D
             Ejecucion3d.cadenota += ini1 + ":\nt2 = heap[t4];\nif t2 =\\0 ";
             sal = Ejecucion3d.generalabel();
             String deci = Ejecucion3d.generalabel();
-            Ejecucion3d.cadenota += "goto error_parser;\nif t2 > 57 goto error_parser;\nif t2 < 48 goto error_parser;\nif t2=46 goto " + deci + ";\n";
-            Ejecucion3d.cadenota += "t3 = t3 * 10;\nt2 = t2 - 30;\n";
+            Ejecucion3d.cadenota += "goto error_parser;\nif t2 > 57 goto error_parser;\nif t2=46 goto " + deci + ";\nif t2 < 48 goto error_parser;\n";
+            Ejecucion3d.cadenota += "t3 = t3 * 10;\nt2 = t2 - 48;\n";
             Ejecucion3d.cadenota += "t3 = t3 + t2;\nt4 = t4 + 1;\ngoto " + ini1 + ";\n";
             Ejecucion3d.cadenota += deci + ":\n t5 = 1; \nt6 =10;\nt4=t4+1;\nt7 = 0;\n";
             String deci2 = Ejecucion3d.generalabel();
             Ejecucion3d.cadenota += deci2 + ":\nt2 = heap[t4];\nif t2 =\\0";
             Ejecucion3d.cadenota += " goto " + sal + ";\nif t2 > 57 goto error_parser;\nif t2 < 48 goto error_parser;\n";
-            Ejecucion3d.cadenota += "t5 = t5 /t6;\nt8 = t5 * t2;\nt7 = t7 + t8;\nt4 = t4+1;\nt6=t6*10;\ngoto ";
-            Ejecucion3d.cadenota += deci2 + ";\nt9 = t3+t7;\nstack[sp] = t9;\nreturn;}\n";
+            Ejecucion3d.cadenota += "t2=t2-48;\nt5 = t5 /t6;\nt8 = t5 * t2;\nt7 = t7 + t8;\nt4 = t4+1;\nt6=t6*10;\ngoto ";
+            Ejecucion3d.cadenota += deci2 + ";\n"+sal+":\nt9 = t3+t7;\nstack[sp] = t9;\nreturn;}\n";
             #endregion
 
 
@@ -1883,7 +1888,7 @@ namespace C3D
             ini1 = Ejecucion3d.generalabel();
             Ejecucion3d.cadenota += deci + ":\nif t5 > t2 goto " + ini1 + ";\nt5 = t5 + t3;\ngoto " + deci + ";\n";
             deci2 = Ejecucion3d.generalabel();
-            Ejecucion3d.cadenota += ini1 + ":\nt5 = t5 - t3;\nt4 = t4 +t5;\nt2 = t2 - t5;\nif t2 <= 0 goto " + deci2 + ";\n";
+            Ejecucion3d.cadenota += ini1 + ":\nt5 = t5 - t3;\nt4 = t4 +t5;\nt2 = t2 - t5;\nif t2 < 1 goto " + deci2 + ";\n";
             Ejecucion3d.cadenota += "goto " + sal + ";\n" + deci2 + ":\nstack[sp]=t4;\nreturn;}\n";
             #endregion
 
@@ -2646,8 +2651,9 @@ namespace C3D
                                     else
                                     {
 
-                                        errore += "Imposible acceder a un atributo tipo arreglo sin posicion especificada," + aux.ChildNodes.ElementAt(0).Token.Text;
-                                        return "";
+                                        String t3 = Ejecucion3d.generatemp();
+                                        Ejecucion3d.cadenota += t3 + "= stack[" + t2 + "];\n";
+                                        return t3;
                                     }
 
 
@@ -2741,7 +2747,7 @@ namespace C3D
                         foreach (TS tablita in actualM.elementos)
                         {
 
-                            if (tablita.Tipo == 3 && tablita.nombre.Equals(nombre) && tablita.localidad == 0)
+                            if ((tablita.Tipo == 3|(tablita.Tipo==4&&tablita.tipo2==6)) && tablita.nombre.Equals(nombre) && tablita.localidad == 0)
                             {
                                 String t2 = Ejecucion3d.generatemp();
                                 Ejecucion3d.cadenota += t2 + "= sp + " + tablita.posicion + ";\n";
@@ -3546,7 +3552,58 @@ namespace C3D
                             Ejecucion3d.cadenota += "parseint();\n";
                             Ejecucion3d.cadenota += t2 + "=stack[sp];\n";
                             Ejecucion3d.cadenota += "sp" + "=sp -" + actualM.peso + ";\n";
+                            tipoex = 0;
                             return t2;
+                        case "parsedouble":
+                            String t22 = Ejecucion3d.generatemp();
+                            Ejecucion3d.cadenota += t22 + "=sp +" + actualM.peso + ";\n";
+                            Ejecucion3d.cadenota += "stack[" + t22 + "]=00;\n";
+                            Ejecucion3d.cadenota += t22 + "=" + t22 + "+ 1;\n";
+                            Ejecucion3d.cadenota += "stack[" + t22 + "]=" + t11 + ";\n";
+                            Ejecucion3d.cadenota += "sp" + "=sp +" + actualM.peso + ";\n";
+                            Ejecucion3d.cadenota += "parsedouble();\n";
+                            Ejecucion3d.cadenota += t22 + "=stack[sp];\n";
+                            Ejecucion3d.cadenota += "sp" + "=sp -" + actualM.peso + ";\n";
+                            tipoex = 1;
+                            return t22;
+                        case "inttostr":
+                            String t23 = Ejecucion3d.generatemp();
+                            Ejecucion3d.cadenota += t23 + "=sp +" + actualM.peso + ";\n";
+                            Ejecucion3d.cadenota += "stack[" + t23 + "]=00;\n";
+                            Ejecucion3d.cadenota += t23 + "=" + t23 + "+ 1;\n";
+                            Ejecucion3d.cadenota += "stack[" + t23 + "]=" + t11 + ";\n";
+                            Ejecucion3d.cadenota += "sp" + "=sp +" + actualM.peso + ";\n";
+                            Ejecucion3d.cadenota += "inttostr();\n";
+                            Ejecucion3d.cadenota += t23 + "=stack[sp];\n";
+                            Ejecucion3d.cadenota += "sp" + "=sp -" + actualM.peso + ";\n";
+                            tipoex = 2;
+                            return t23;
+                        case "doubletostr":
+                            String t24 = Ejecucion3d.generatemp();
+                            Ejecucion3d.cadenota += t24 + "=sp +" + actualM.peso + ";\n";
+                            Ejecucion3d.cadenota += "stack[" + t24 + "]=00;\n";
+                            Ejecucion3d.cadenota += t24 + "=" + t24 + "+ 1;\n";
+                            Ejecucion3d.cadenota += "stack[" + t24 + "]=" + t11 + ";\n";
+                            Ejecucion3d.cadenota += "sp" + "=sp +" + actualM.peso + ";\n";
+                            Ejecucion3d.cadenota += "doubletostr();\n";
+                            Ejecucion3d.cadenota += t24 + "=stack[sp];\n";
+                            Ejecucion3d.cadenota += "sp" + "=sp -" + actualM.peso + ";\n";
+                            tipoex = 2;
+                            return t24;
+                        case "doubletoint":
+                            String t25 = Ejecucion3d.generatemp();
+                            Ejecucion3d.cadenota += t25 + "=sp +" + actualM.peso + ";\n";
+                            Ejecucion3d.cadenota += "stack[" + t25 + "]=00;\n";
+                            Ejecucion3d.cadenota += t25 + "=" + t25 + "+ 1;\n";
+                            Ejecucion3d.cadenota += "stack[" + t25 + "]=" + t11 + ";\n";
+                            Ejecucion3d.cadenota += "sp" + "=sp +" + actualM.peso + ";\n";
+                            Ejecucion3d.cadenota += "doubletoint();\n";
+                            Ejecucion3d.cadenota += t25 + "=stack[sp];\n";
+                            Ejecucion3d.cadenota += "sp" + "=sp -" + actualM.peso + ";\n";
+                            tipoex = 1;
+                            return t25;
+
+
 
 
                     }
@@ -3663,8 +3720,9 @@ namespace C3D
                                     else
                                     {
 
-                                        errore += "Imposible acceder a un atributo tipo arreglo sin posicion especificada," + aux.ChildNodes.ElementAt(0).Token.Text;
-                                        return "";
+                                        String t3 = Ejecucion3d.generatemp();
+                                        Ejecucion3d.cadenota += t3 + "= stack[" + t2 + "];\n";
+                                        return t3;
                                     }
 
 
@@ -4512,6 +4570,42 @@ namespace C3D
 
         }
 
+        public void imprimirt(ParseTreeNode raiz)
+        {
+
+            String t1 = Expt(raiz.ChildNodes.ElementAt(2));
+            String t2 = Ejecucion3d.generatemp();
+            Ejecucion3d.cadenota += t2 + "= sp + " + actualM.peso + ";\n";
+            Ejecucion3d.cadenota += "stack[" + t2 + "]= 00;\n";
+            Ejecucion3d.cadenota += t2 + "=" + t2 + "+1;\n";
+            Ejecucion3d.cadenota += "stack[" + t2 + "]=" + t1 + ";\n";
+            Ejecucion3d.cadenota += "sp = sp +" + actualM.peso + ";\n";
+            Ejecucion3d.cadenota += "imprimir();\n";
+            Ejecucion3d.cadenota += "sp = sp -" + actualM.peso + ";\n";
+
+        }
+
+        public void superr1(ParseTreeNode raiz)
+        {
+            ParseTreeNode super = raiz.ChildNodes[0].ChildNodes[0];
+            String atri = super.ChildNodes[1].Token.Text;
+            foreach(TS hijo in actualc.elementos)
+            {
+                if (hijo.nombre.Equals(atri) && hijo.Tipo == 5 &&hijo.heredado==1)
+                {
+                    String t1 = Expt(raiz.ChildNodes[1].ChildNodes[0]);
+                    String t2 = Ejecucion3d.generatemp();
+                    Ejecucion3d.cadenota += t2+"=selfp +"+hijo.posicion+";\n";
+                    Ejecucion3d.cadenota += "heap[" + t2 + "]=" + t1+";\n";
+
+                    return;
+                }
+
+            }
+
+
+        }
+
         public void asignar(ParseTreeNode raiz)
         {
             ParseTreeNode aux, aux2;
@@ -4532,7 +4626,13 @@ namespace C3D
                     {
                         String t2 = Ejecucion3d.generatemp();
                         Ejecucion3d.cadenota += t2 + "= sp + " + tablita.posicion + ";\n";
-
+                        
+                        if (aux.ChildNodes[0].ChildNodes.Count == 1)
+                        {
+                            Ejecucion3d.cadenota +="stack[" + t2 + "]="+t1+";\n";
+                            return;
+                           
+                        }
 
                         ParseTreeNode lvec = aux.ChildNodes.ElementAt(0).ChildNodes.ElementAt(1);
                         ParseTreeNode[] E = new ParseTreeNode[lvec.ChildNodes.Count];
@@ -4632,7 +4732,14 @@ namespace C3D
                                             if (tablita2.nombre.Equals(nombre) && tablita2.Tipo == 5)
                                             {
                                                 String t3 = Ejecucion3d.generatemp();
-                                                Ejecucion3d.cadenota += t3 + "= stack[" + t4 + "];\n";
+                                                if (i == 1)
+                                                {
+                                                    Ejecucion3d.cadenota += t3 + "= stack[" + t4 + "];\n";
+                                                }
+                                                else
+                                                {
+                                                    Ejecucion3d.cadenota += t3 + "= heap[" + t4 + "];\n";
+                                                }
                                                 t4 = Ejecucion3d.generatemp();
                                                 Ejecucion3d.cadenota += t4 + "=" + t3 + "+" + tablita2.posicion + ";\n";
 
@@ -4742,6 +4849,11 @@ namespace C3D
         public void asignart(ParseTreeNode raiz)
         {
             ParseTreeNode aux, aux2;
+            if (raiz.ChildNodes[0].ChildNodes[0].Term.Name.Equals("SUPER"))
+            {
+                superr1(raiz);
+                return;
+            }
 
             aux = raiz.ChildNodes.ElementAt(0);
             aux2 = raiz.ChildNodes.ElementAt(1).ChildNodes.ElementAt(0);
@@ -4754,8 +4866,33 @@ namespace C3D
 
                 foreach (TS tablita in actualM.elementos)
                 {
+                    if (tablita.arreglo == 1 && (tablita.Tipo == 4 | tablita.Tipo == 2) && tablita.nombre.Equals(nombre) && tablita.localidad == 0)
+                    {
+                        String t2 = Ejecucion3d.generatemp();
+                        Ejecucion3d.cadenota += t2 + "= sp + " + tablita.posicion + ";\n";
 
-                    if ((tablita.Tipo == 4 | tablita.Tipo == 2) && tablita.nombre.Equals(nombre) && tablita.localidad == 0)
+
+                        ParseTreeNode lvec = aux.ChildNodes.ElementAt(0).ChildNodes.ElementAt(1);
+                        ParseTreeNode[] E = new ParseTreeNode[lvec.ChildNodes.Count];
+                        int ii = 0;
+                        foreach (ParseTreeNode EE in lvec.ChildNodes)
+                        {
+                            E[ii] = EE.ChildNodes.ElementAt(0);
+                            ii++;
+                        }
+
+                        String t3 = Ejecucion3d.generatemp();
+                        Ejecucion3d.cadenota += t3 + "= stack[" + t2 + "];\n";
+                        enstack = true;
+                        t2 = serializart(E, tablita.tamanios, t3, tablita.valores);
+                        enstack = false;
+                        String t5 = Ejecucion3d.generatemp();
+                        Ejecucion3d.cadenota += "heap[" + t2 + "]=" + t1 + ";\n";
+
+
+                        bandera = true;
+                        break;
+                    }else if ((tablita.Tipo == 4 | tablita.Tipo == 2) && tablita.nombre.Equals(nombre) && tablita.localidad == 0)
                     {
                         String t2 = Ejecucion3d.generatemp();
                         Ejecucion3d.cadenota += t2 + "= sp + " + tablita.posicion + ";\n";
@@ -4829,10 +4966,17 @@ namespace C3D
 
                                         foreach (TS tablita2 in clasesita.elementos)
                                         {
-                                            if (tablita2.nombre.Equals(nombre) && tablita.Tipo == 5)
+                                            if (tablita2.nombre.Equals(nombre) && tablita2.Tipo == 5)
                                             {
                                                 String t3 = Ejecucion3d.generatemp();
-                                                Ejecucion3d.cadenota += t3 + "= heap[" + t4 + "];\n";
+                                                if (i == 1)
+                                                {
+                                                    Ejecucion3d.cadenota += t3 + "= stack[" + t4 + "];\n";
+                                                }
+                                                else
+                                                {
+                                                    Ejecucion3d.cadenota += t3 + "= heap[" + t4 + "];\n";
+                                                }
                                                 t4 = Ejecucion3d.generatemp();
                                                 Ejecucion3d.cadenota += t4 + "=" + t3 + "+" + tablita2.posicion + ";\n";
 
@@ -4982,6 +5126,7 @@ namespace C3D
 
 
                 TS nuevo2 = new TS(aux2.ChildNodes.ElementAt(0).Token.Text, 4, actualM.peso, tipov2, visibilidad, 1, "", 1, dimen, dimensi);
+                nuevo2.etiqueta = tipov;
                 String t1 = Ejecucion3d.generatemp();
                 String t3;
                 if (raiz.ChildNodes.ElementAt(2).ChildNodes.Count > 0)
@@ -5101,6 +5246,7 @@ namespace C3D
                                         String nombre = raiz.ChildNodes.ElementAt(1).ChildNodes.ElementAt(0).ChildNodes.ElementAt(0).Token.Text;
                                         TS nuevo = new TS(nombre, 3, actualM.peso, 6, 0, 1, tipov, 0, 0, null);
                                         actualM.elementos.Add(nuevo);
+                                        nuevo.etiqueta = tipov;
                                         actualM.peso++;
                                         String t2 = Ejecucion3d.generatemp();
                                         Ejecucion3d.cadenota += t2 + "= sp + " + actualM.peso + ";\n";
@@ -5131,6 +5277,7 @@ namespace C3D
                                         String nombre = raiz.ChildNodes.ElementAt(1).ChildNodes.ElementAt(0).ChildNodes.ElementAt(0).Token.Text;
                                         TS nuevo = new TS(nombre, 3, actualM.peso, 6, 0, 1, tipov, 0, 0, null);
                                         actualM.elementos.Add(nuevo);
+                                        nuevo.etiqueta = tipov;
                                         actualM.peso++;
                                         String t2 = Ejecucion3d.generatemp();
                                         Ejecucion3d.cadenota += t2 + "= sp + " + actualM.peso + ";\n";
@@ -5188,6 +5335,7 @@ namespace C3D
                 {
                     Ejecucion3d.cadenota += "stack[" + t1 + "] =" + t3 + ";\n";
                     TS nuevo = new TS(hijo.Token.Text, 4, actualM.peso, tipov2, visibilidad, 1, "", 0, 0, null);
+                    nuevo.etiqueta = tipov;
                     actualM.peso++;
                     actualM.elementos.Add(nuevo);
                     Ejecucion3d.cadenota += t1 + "=" + t1 + "+ 1;\n";
@@ -5258,6 +5406,7 @@ namespace C3D
 
                 TS nuevo2 = new TS(aux2.Token.Text, 5, actualM.peso, tipov2, visibilidad, 1, "", 1, dimen, dimensi);
                 String t1 = Ejecucion3d.generatemp();
+                nuevo2.etiqueta = tipov;
                 Ejecucion3d.cadenota += t1 + "= sp +" + nuevo2.posicion + ";\n";
                 Ejecucion3d.cadenota += "stack[" + t1 + "] = 00;\n";
                 actualM.peso++;
@@ -5362,6 +5511,7 @@ namespace C3D
                                         Ejecucion3d.cadenota += "sp = sp - " + actualM.peso + ";\n";
                                         String nombre = raiz.ChildNodes.ElementAt(1).ChildNodes.ElementAt(0).ChildNodes.ElementAt(0).Token.Text;
                                         TS nuevo = new TS(nombre, 3, actualM.peso, 6, 0, 1, tipov, 0, 0, null);
+                                        nuevo.etiqueta = tipov;
                                         actualM.elementos.Add(nuevo);
                                         actualM.peso++;
                                         String t2 = Ejecucion3d.generatemp();
@@ -5387,34 +5537,35 @@ namespace C3D
                                         Ejecucion3d.cadenota += "stack[" + t1 + "] = 00;\n";
                                         Ejecucion3d.cadenota += "sp = sp + " + actualM.peso + ";\n";
                                         Ejecucion3d.cadenota += "init_" + tipov + "1();\n";
-                                        Ejecucion3d.cadenota += "sp = sp - " + actualM.peso + ";\n";
                                         t1 = Ejecucion3d.generatemp();
                                         Ejecucion3d.cadenota += t1 + "=stack[sp];\n";
                                         Ejecucion3d.cadenota += "sp = sp - " + actualM.peso + ";\n";
                                         String nombre = raiz.ChildNodes.ElementAt(1).ChildNodes.ElementAt(0).ChildNodes.ElementAt(0).Token.Text;
                                         TS nuevo = new TS(nombre, 3, actualM.peso, 6, 0, 1, tipov, 0, 0, null);
+                                        nuevo.etiqueta = tipov;
                                         actualM.elementos.Add(nuevo);
+                                        actualM.peso++;
                                         String t2 = Ejecucion3d.generatemp();
                                         Ejecucion3d.cadenota += t2 + "= sp + " + actualM.peso + ";\n";
                                         Ejecucion3d.cadenota += "stack[" + t2 + "] = 00;\n";
                                         Ejecucion3d.cadenota += t2 + "=" + t2 + " + 1 ;\n";
                                         Ejecucion3d.cadenota += "stack[" + t2 + "] = " + t1 + ";\n";
 
-                                        ParseTreeNode parafin = insta.ChildNodes.ElementAt(1);
+                                        ParseTreeNode parafin = insta.ChildNodes.ElementAt(3);
                                         foreach (ParseTreeNode parax in parafin.ChildNodes)
                                         {
 
-                                            String ex = Exp(parax);
+                                            String ex = Expt(parax);
                                             Ejecucion3d.cadenota += t2 + "=" + t2 + " + 1 ;\n";
                                             Ejecucion3d.cadenota += "stack[" + t2 + "] = " + ex + ";\n";
 
                                         }
-                                        Ejecucion3d.cadenota += "sp = sp + " + actualM.peso;
+                                        Ejecucion3d.cadenota += "sp = sp + " + actualM.peso+";\n";
                                         String tsp = Ejecucion3d.generatemp();
                                         Ejecucion3d.cadenota += tsp + "= selfp;\n";
                                         Ejecucion3d.cadenota += "selfp = " + t1 + ";\n";
                                         Ejecucion3d.cadenota += constru.etiqueta + "();\n";
-                                        Ejecucion3d.cadenota += "sp = sp - " + actualM.peso;
+                                        Ejecucion3d.cadenota += "sp = sp - " + actualM.peso+";\n";
                                         Ejecucion3d.cadenota += "selfp = " + tsp + ";\n";
                                         return;
 
@@ -5451,6 +5602,7 @@ namespace C3D
                 {
                     Ejecucion3d.cadenota += "stack[" + t1 + "] =" + t3 + ";\n";
                     TS nuevo = new TS(hijo.Token.Text, 4, actualM.peso, tipov2, visibilidad, 1, "", 0, 0, null);
+                    nuevo.etiqueta = tipov;
                     actualM.peso++;
                     actualM.elementos.Add(nuevo);
                     Ejecucion3d.cadenota += t1 + "=" + t1 + "+ 1;\n";
@@ -5891,9 +6043,17 @@ namespace C3D
                 if (raiz.ChildNodes.ElementAt(1).Term.Name.Equals("OPEREL"))
                 {
                     tipo = raiz.ChildNodes.ElementAt(1).ChildNodes.ElementAt(0).Token.Text;
-                } else
-                {
-                    tipo = raiz.ChildNodes.ElementAt(1).Token.Text;
+                }
+                else { 
+
+                    try
+                    {
+                        tipo = raiz.ChildNodes.ElementAt(1).Token.Text;
+                    }
+                    catch(Exception e)
+                    {
+                        tipo = raiz.ChildNodes[0].Token.Text;
+                    }
                 }
                 switch (tipo)
                 {
@@ -5978,6 +6138,12 @@ namespace C3D
                         ret.Add(lv);
                         ret.Add(t2[1].ToString());
                         return ret;
+                    case "not":
+                        biffalse = false;
+                        t1 = cond(raiz.ChildNodes.ElementAt(1));
+                        ret.Add(t1[1].ToString());
+                        ret.Add(t1[0].ToString());
+                        return ret;
                     case "xor":
                         biffalse = false;
                         String txor = Ejecucion3d.generatemp();
@@ -6027,7 +6193,7 @@ namespace C3D
             if (raiz.ChildNodes.Count == 1)
             {
 
-                String t1 = Exp(raiz);
+                String t1 = Expt(raiz);
                 String eti1 = Ejecucion3d.generalabel();
                 String eti2 = Ejecucion3d.generalabel();
                 Ejecucion3d.cadenota += "if " + t1 + "= 1  goto" + eti1 + "\n";
@@ -6045,7 +6211,14 @@ namespace C3D
                 }
                 else
                 {
-                    tipo = raiz.ChildNodes.ElementAt(2).Token.Text;
+                    try
+                    {
+                        tipo = raiz.ChildNodes.ElementAt(2).Token.Text;
+                    }
+                    catch (Exception e)
+                    {
+                        tipo = raiz.ChildNodes[0].Token.Text;
+                    }
                 }
                 switch (tipo)
                 {
@@ -6131,7 +6304,14 @@ namespace C3D
                         ret.Add(lv);
                         ret.Add(t2[1].ToString());
                         return ret;
+                    case "not":
+                        biffalse = false;
+                        t1 = cond(raiz.ChildNodes.ElementAt(1));
+                        ret.Add(t1[1].ToString());
+                        ret.Add(t1[0].ToString());
+                        return ret;
                     case "xor":
+
                         biffalse = false;
                         String txor = Ejecucion3d.generatemp();
                         Ejecucion3d.cadenota += txor + "= 0;\n";
@@ -7264,6 +7444,9 @@ namespace C3D
                         break;
                     case "ELEGIR":
                         Elegir(bloquesito);
+                        break;
+                    case "IMPRIMIR":
+                        imprimirt(bloquesito);
                         break;
                     case "RET":
                         Retornot(bloquesito);

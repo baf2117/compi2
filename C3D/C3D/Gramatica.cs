@@ -95,6 +95,7 @@ namespace C3D
             var outs = ToTerm("out_string");
             var parseint = ToTerm("parseint");
             var parsedo = ToTerm("parsedouble");
+            var intstr = ToTerm("inttostr");
             var doustr = ToTerm("doubletostr");
             var douint = ToTerm("doubletoint");
 
@@ -119,6 +120,7 @@ namespace C3D
             LLAMAR = new NonTerminal("LLAMAR"),
             ASG = new NonTerminal("ASIGNAR"),
             ENTERES = new NonTerminal("ENTERES"),
+            IMPRIMIR = new NonTerminal("IMPRIMIR"),
             PARAMETROS = new NonTerminal("PARAMETROS"),
             CFUNCIONES = new NonTerminal("CFUNCIONES"),
             DEC = new NonTerminal("DEC"),
@@ -236,7 +238,7 @@ namespace C3D
 
             LSENTENCIAS.Rule = MakeStarRule(LSENTENCIAS,SENTENCIA);
 
-            SENTENCIA.Rule = DEC | ATRIBUTO + Eos | ASIGNACION |SELF|CICLOS|SALIR|CONTINUAR| NATIVAS + Eos|RET |MM + Eos;
+            SENTENCIA.Rule = DEC | ATRIBUTO + Eos | ASIGNACION |SELF|CICLOS|SALIR|CONTINUAR| NATIVAS + Eos|RET |MM + Eos|IMPRIMIR;
 
             SALIR.Rule = salir + Eos;
 
@@ -254,7 +256,9 @@ namespace C3D
 
             SELF.Rule = self +punto+ ATRIBUTO+ ASG + Eos;
 
-            ATRIBUTO.Rule = MakePlusRule(ATRIBUTO, ToTerm("."), ATRIBUTOS);
+            SUPER.Rule = superr + punto + id;
+
+            ATRIBUTO.Rule = MakePlusRule(ATRIBUTO, ToTerm("."), ATRIBUTOS)|SUPER;
 
             ATRIBUTOS.Rule = id | id + corch1 + EA + corch2 | id + LVEC;
 
@@ -292,11 +296,14 @@ namespace C3D
 
             LOOP.Rule = loop + dosp + Eos + BLOQUE;
 
-            NATIVAS.Rule = outs + corch1 + E + corch2 
-                          | parseint + corch1 + E + corch2
+            IMPRIMIR.Rule = outs + corch1 + E + corch2+ Eos;
+                          
+
+            NATIVAS.Rule = parseint + corch1 + E + corch2
                           | parsedo + corch1 + E + corch2
-                          | doustr + corch1 + E + corch2 
-                          | douint + corch1 + E + corch2;
+                          | doustr + corch1 + E + corch2
+                          | douint + corch1 + E + corch2
+                          | intstr + corch1 + E + corch2;
 
             DECG.Rule = PRIV + DEC | DEC;
 
